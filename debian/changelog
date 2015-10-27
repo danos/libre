@@ -1,3 +1,11 @@
+libre (0.4.14-2) unstable; urgency=low
+
+  * Make pkg-voip maintained.
+  * Fix Homepage URL.
+  * Add Vcs-* fields.
+
+ -- Simon Josefsson <simon@josefsson.org>  Mon, 26 Oct 2015 21:54:45 +0100
+
 libre (0.4.14-1) unstable; urgency=low
 
   * Initial release.  Closes: #636272.
