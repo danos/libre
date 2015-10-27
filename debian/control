@@ -1,12 +1,12 @@
 Source: libre
 Section: comm
 Priority: optional
-Maintainer: Alfred E. Heggestad <aeh@db.org>
-Standards-Version: 3.9.5
-Build-Depends: debhelper (>= 9.20120311)
+Maintainer: Simon Josefsson <simon@josefsson.org>
+Standards-Version: 3.9.6
+Build-Depends: debhelper (>= 9), libssl-dev
 Homepage: http://www.creytiv.com/
 
-Package: libre
+Package: libre0
 Architecture: any
 Section: libs
 Depends: ${shlibs:Depends}, ${misc:Depends}
@@ -37,7 +37,7 @@ Description: Generic library for real-time communications with async IO support
 Package: libre-dev
 Architecture: any
 Section: libdevel
-Depends: libre (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Depends: libre0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
 Description: Generic library for real-time communications (development files)
  Libre is a portable and generic library for real-time communications
  with async IO support and a complete SIP stack with support for protocols
