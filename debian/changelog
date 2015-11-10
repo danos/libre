@@ -1,10 +1,8 @@
 libre (0.4.14-2) unstable; urgency=low
 
-  * Make pkg-voip maintained.
-  * Fix Homepage URL.
-  * Add Vcs-* fields.
+  * Make team maintained.
 
- -- Simon Josefsson <simon@josefsson.org>  Mon, 26 Oct 2015 21:54:45 +0100
+ -- Simon Josefsson <simon@josefsson.org>  Tue, 10 Nov 2015 14:55:49 +0100
 
 libre (0.4.14-1) unstable; urgency=low
 
