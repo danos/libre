@@ -1,10 +1,16 @@
 libre (0.4.14-3) unstable; urgency=low
 
+  [ Simon Josefsson ]
   * Fix Homepage URL.
   * Add Vcs-* fields.
   * Add Vasudev as uploader.
 
- -- Simon Josefsson <simon@josefsson.org>  Tue, 10 Nov 2015 15:12:49 +0100
+  [ Vasudev Kamath ]
+  * Include re.mk in libre-dev, this will be needed by sibling packages
+    like librem and baresip.
+    Closes: bug#805767, Thanks to myself.
+
+ -- Vasudev Kamath <vasudev@copyninja.info>  Sun, 22 Nov 2015 16:00:50 +0530
 
 libre (0.4.14-2) unstable; urgency=low
 
