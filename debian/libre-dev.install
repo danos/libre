@@ -2,3 +2,4 @@ usr/lib/*/libre.so
 usr/lib/*/libre.a
 usr/lib/*/pkgconfig
 usr/include/re
+usr/share/re/
