@@ -3,7 +3,7 @@
 DH_VERBOSE = 1
 
 %:
-	dh $@ --parallel
+	dh $@ --with pkgkde_symbolshelper --parallel
 
 EXTRA_LFLAGS:="$(shell dpkg-buildflags --get LDFLAGS) -Wl,-soname,libre.so.0"
 EXTRA_CFLAGS:="$(shell dpkg-buildflags --get CPPFLAGS)"

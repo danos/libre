@@ -1,3 +1,4 @@
+# SymbolsHelper-Confirmed: 0.4.14 amd64 i386
 libre.so.0 libre0 #MINVER#
  _mod_close@Base 0.4.14
  _mod_open@Base 0.4.14
@@ -87,7 +88,7 @@ libre.so.0 libre0 #MINVER#
  dtls_send@Base 0.4.14
  dtls_set_handlers@Base 0.4.14
  dtls_udp_sock@Base 0.4.14
- epoll_check@Base 0.4.14
+ (arch=amd64)epoll_check@Base 0.4.14
  fd_close@Base 0.4.14
  fd_debug@Base 0.4.14
  fd_listen@Base 0.4.14
