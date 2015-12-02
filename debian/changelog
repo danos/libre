@@ -1,3 +1,10 @@
+libre (0.4.14-4) UNRELEASED; urgency=medium
+
+  * Use pkg-kde-tools to generate symbol files.  Fixes FTBFS on i386
+    architecture due to missing symbols.
+
+ -- Vasudev Kamath <kamathvasudev@gmail.com>  Wed, 02 Dec 2015 23:10:40 +0530
+
 libre (0.4.14-3) unstable; urgency=low
 
   [ Simon Josefsson ]
