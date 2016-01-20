@@ -1,0 +1,27 @@
+Description: get the correct multi-arch triplet
+On certain architectures, epoll is not correctly picked
+up because of incorrect multi-arch triplet. This patch
+fixes it.
+.
+Author: Vasudev Kamath <kamathvasudev@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Forwarded: no
+Reviewed-By: Ramakrishnan Muthukrishnan <rkrishnan@debian.org>
+Last-Update: 2016-01-20
+
+--- libre-0.4.14.orig/mk/re.mk
++++ libre-0.4.14/mk/re.mk
+@@ -197,7 +197,7 @@ endif
+ # OS section
+ #
+ 
+-MACHINE   := $(shell $(CC) -dumpmachine)
++MACHINE   := $(shell $(CC) --print-multiarch)
+ 
+ ifeq ($(CROSS_COMPILE),)
+ OS        := $(shell uname -s | sed -e s/SunOS/solaris/ | tr "[A-Z]" "[a-z]")
