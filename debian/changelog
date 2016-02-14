@@ -1,3 +1,13 @@
+libre (0.4.15-1) UNRELEASED; urgency=medium
+
+  * Imported Upstream version 0.4.15
+  * debian/gbp.conf:
+    + Filter debian folder from upstream while importing via gbp.
+  * Update symbols file to make epoll_check symbol available on i386
+    architecture also.
+
+ -- Vasudev Kamath <vasudev@copyninja.info>  Sun, 14 Feb 2016 22:47:29 +0530
+
 libre (0.4.14-4) unstable; urgency=medium
 
   * Team upload.
