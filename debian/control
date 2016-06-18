@@ -7,7 +7,7 @@ Standards-Version: 3.9.8
 Build-Depends: debhelper (>= 9), libssl-dev, pkg-kde-tools
 Homepage: http://www.creytiv.com/re
 Vcs-Git: https://anonscm.debian.org/git/pkg-voip/libre.git
-Vcs-Browser: http://anonscm.debian.org/cgit/pkg-voip/libre.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-voip/libre.git
 
 Package: libre0
 Architecture: any
