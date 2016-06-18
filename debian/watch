@@ -1,2 +1,2 @@
-version=3
-http://www.creytiv.com/pub/ re-(.*)\.tar\.gz
+version=4
+http://www.creytiv.com/pub/ re-@ANY_VERSION@@ARCHIVE_EXT@
