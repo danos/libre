@@ -1,12 +1,17 @@
-libre (0.4.15-1) UNRELEASED; urgency=medium
+libre (0.4.16-1) unstable; urgency=medium
 
   * Imported Upstream version 0.4.15
+  * Imported Upstream version 0.4.16
   * debian/gbp.conf:
     + Filter debian folder from upstream while importing via gbp.
   * Update symbols file to make epoll_check symbol available on i386
     architecture also.
+  * Bump watch file format to version 4.
+  * debian/control:
+    + Mark package as compliant to Debian Policy 3.9.8.
+    + Use secure https URL for Vcs-Git and Vcs-Browser field.
 
- -- Vasudev Kamath <vasudev@copyninja.info>  Sun, 14 Feb 2016 22:47:29 +0530
+ -- Vasudev Kamath <vasudev@copyninja.info>  Sat, 18 Jun 2016 12:59:39 +0530
 
 libre (0.4.14-4) unstable; urgency=medium
 
