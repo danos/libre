@@ -1,5 +1,9 @@
-libre (0.4.16-1) unstable; urgency=medium
+libre (0.4.17-1) unstable; urgency=medium
 
+  [ Simon Josefsson ]
+  * Imported Upstream version 0.4.17
+
+  [ Vasudev Kamath ]
   * Imported Upstream version 0.4.15
   * Imported Upstream version 0.4.16
   * debian/gbp.conf:
