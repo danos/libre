@@ -17,7 +17,7 @@ libre (0.4.17-1) unstable; urgency=medium
     + Mark package as compliant to Debian Policy 3.9.8.
     + Use secure https URL for Vcs-Git and Vcs-Browser field.
 
- -- Vasudev Kamath <vasudev@copyninja.info>  Sat, 18 Jun 2016 12:59:39 +0530
+ -- Simon Josefsson <simon@josefsson.org>  Tue, 19 Jul 2016 11:29:44 +0200
 
 libre (0.4.14-4) unstable; urgency=medium
 
