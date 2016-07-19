@@ -76,6 +76,7 @@ libre.so.0 libre0 #MINVER#
  dns_rrlist_apply@Base 0.4.14
  dns_rrlist_find@Base 0.4.14
  dns_rrlist_sort@Base 0.4.14
+ dns_rrlist_sort_addr@Base 0.4.17
  dns_srv_get@Base 0.4.14
  dnsc_alloc@Base 0.4.14
  dnsc_notify@Base 0.4.14
@@ -595,6 +596,7 @@ libre.so.0 libre0 #MINVER#
  sip_dialog_encode@Base 0.4.14
  sip_dialog_established@Base 0.4.14
  sip_dialog_fork@Base 0.4.14
+ sip_dialog_hash@Base 0.4.17
  sip_dialog_lseq@Base 0.4.14
  sip_dialog_route@Base 0.4.14
  sip_dialog_rseq_valid@Base 0.4.14
@@ -830,7 +832,9 @@ libre.so.0 libre0 #MINVER#
  tls_peer_fingerprint@Base 0.4.14
  tls_peer_verify@Base 0.4.14
  tls_set_certificate@Base 0.4.14
+ tls_set_ciphers@Base 0.4.17
  tls_set_selfsigned@Base 0.4.14
+ tls_set_servername@Base 0.4.17
  tls_set_srtp@Base 0.4.14
  tls_set_verify_client@Base 0.4.14
  tls_srtp_keyinfo@Base 0.4.14

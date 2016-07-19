@@ -3,6 +3,7 @@ libre (0.4.17-1) unstable; urgency=medium
   [ Simon Josefsson ]
   * Imported Upstream version 0.4.17
   * Build with hardening=+all (lintian hardening-no-bindnow).
+  * Add new symbols.
 
   [ Vasudev Kamath ]
   * Imported Upstream version 0.4.15
