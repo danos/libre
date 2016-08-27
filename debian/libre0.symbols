@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 0.4.16 i386
+# SymbolsHelper-Confirmed: 0.4.17 alpha arm64 armel armhf hppa m68k mips mips64el mipsel powerpc powerpcspe ppc64 ppc64el s390x sh4 sparc64 x32
 libre.so.0 libre0 #MINVER#
  _mod_close@Base 0.4.14
  _mod_open@Base 0.4.14
@@ -90,7 +90,7 @@ libre.so.0 libre0 #MINVER#
  dtls_set_handlers@Base 0.4.14
  dtls_set_mtu@Base 0.4.16
  dtls_udp_sock@Base 0.4.14
- (arch=amd64 i386)epoll_check@Base 0.4.15
+ epoll_check@Base 0.4.17
  fd_close@Base 0.4.14
  fd_debug@Base 0.4.14
  fd_listen@Base 0.4.14
