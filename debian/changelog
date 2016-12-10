@@ -1,3 +1,16 @@
+libre (0.5.0-1) unstable; urgency=medium
+
+  * Import new upstream version 0.5.0
+    + Remove support for Symbian OS
+    + Add support for OpenSSL 1.1.0 in various modules.
+    + Add udp_helper_find
+  * Drop patch 000_re-openssl-1.1.0, already integrated in upstream
+    release.
+  * Update symbols file for 0.5.0 release.
+  * Drop README from debian/docs file.
+
+ -- Vasudev Kamath <vasudev@copyninja.info>  Sat, 10 Dec 2016 10:12:05 +0530
+
 libre (0.4.17-3) unstable; urgency=medium
 
   * Update symbol file for all architectures.
