@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 0.4.17 alpha arm64 armel armhf hppa m68k mips mips64el mipsel powerpc powerpcspe ppc64 ppc64el s390x sh4 sparc64 x32
+# SymbolsHelper-Confirmed: 0.5.0 i386
 libre.so.0 libre0 #MINVER#
  _mod_close@Base 0.4.14
  _mod_open@Base 0.4.14
@@ -47,6 +47,7 @@ libre.so.0 libre0 #MINVER#
  conf_get_bool@Base 0.4.14
  conf_get_str@Base 0.4.14
  conf_get_u32@Base 0.4.14
+ crc32@Base 0.5.0
  dbg_close@Base 0.4.14
  dbg_handler_set@Base 0.4.14
  dbg_info@Base 0.4.14
@@ -86,9 +87,11 @@ libre.so.0 libre0 #MINVER#
  dtls_accept@Base 0.4.14
  dtls_connect@Base 0.4.14
  dtls_listen@Base 0.4.14
+ dtls_peer@Base 0.5.0
  dtls_send@Base 0.4.14
  dtls_set_handlers@Base 0.4.14
  dtls_set_mtu@Base 0.4.16
+ dtls_set_peer@Base 0.5.0
  dtls_udp_sock@Base 0.4.14
  epoll_check@Base 0.4.17
  fd_close@Base 0.4.14
@@ -828,10 +831,15 @@ libre.so.0 libre0 #MINVER#
  tls_alloc@Base 0.4.14
  tls_cipher_name@Base 0.4.16
  tls_fingerprint@Base 0.4.14
+ tls_flush_error@Base 0.5.0
+ tls_method_tcp@Base 0.5.0
+ tls_method_udp@Base 0.5.0
  tls_peer_common_name@Base 0.4.14
  tls_peer_fingerprint@Base 0.4.14
  tls_peer_verify@Base 0.4.14
  tls_set_certificate@Base 0.4.14
+ tls_set_certificate_der@Base 0.5.0
+ tls_set_certificate_pem@Base 0.5.0
  tls_set_ciphers@Base 0.4.17
  tls_set_selfsigned@Base 0.4.14
  tls_set_servername@Base 0.4.17
@@ -868,6 +876,7 @@ libre.so.0 libre0 #MINVER#
  udp_connect@Base 0.4.14
  udp_error_handler_set@Base 0.4.14
  udp_handler_set@Base 0.4.14
+ udp_helper_find@Base 0.5.0
  udp_listen@Base 0.4.14
  udp_local_get@Base 0.4.14
  udp_multicast_join@Base 0.4.14
