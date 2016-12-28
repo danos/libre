@@ -2,9 +2,9 @@ Description: Add build support for GNU/Hurd and GNU/kFreeBSD
 Author: Vasudev Kamath <vasudev@copyninja.info>
  Last-Update: 2016-12-28
 
---- libre-0.5.0.orig/mk/re.mk
-+++ libre-0.5.0/mk/re.mk
-@@ -239,6 +239,16 @@ ifeq ($(OS),linux)
+--- a/mk/re.mk
++++ b/mk/re.mk
+@@ -239,6 +239,16 @@
  	AR		:= ar
  	AFLAGS		:= cru
  endif
@@ -21,20 +21,20 @@ Author: Vasudev Kamath <vasudev@copyninja.info>
  ifeq ($(OS),darwin)
  	CFLAGS		+= -fPIC -dynamic -DDARWIN
  ifneq (,$(findstring Apple, $(CC_LONGVER)))
-@@ -276,6 +286,16 @@ ifeq ($(OS),freebsd)
- 	CFLAGS		+= -fPIC -DFREEBSD
+@@ -277,6 +287,16 @@
  	LFLAGS		+= -fPIC
  	SH_LFLAGS	+= -shared
-+	MOD_LFLAGS	+=
+ 	MOD_LFLAGS	+=
 +	APP_LFLAGS	+= -rdynamic
 +	AR		:= ar
 +	AFLAGS		:= cru
 +	HAVE_KQUEUE	:= 1
 +endif
 +ifeq ($(OS),gnu/kfreebsd)
-+	CFLAGS		+= -fPIC -DFREEBSD
++	CFLAGS		+= -fPIC -DKFREEBSD -D_GNU_SOURCE
 +	LFLAGS		+= -fPIC
 +	SH_LFLAGS	+= -shared
- 	MOD_LFLAGS	+=
++	MOD_LFLAGS	+=
  	APP_LFLAGS	+= -rdynamic
  	AR		:= ar
+ 	AFLAGS		:= cru
