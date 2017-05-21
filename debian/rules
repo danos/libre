@@ -10,6 +10,11 @@ DH_VERBOSE = 1
 EXTRA_LFLAGS:="$(shell dpkg-buildflags --get LDFLAGS) -Wl,-soname,libre.so.0"
 EXTRA_CFLAGS:="$(shell dpkg-buildflags --get CPPFLAGS)"
 
+# relax symbols check when targeting experimental
+EXP_RELEASE = $(filter experimental% UNRELEASED,\
+ $(shell dpkg-parsechangelog | grep -Po '^Distribution: \K.*'))
+export DPKG_GENSYMBOLS_CHECK_LEVEL=$(if $(EXP_RELEASE),0,1)
+
 override_dh_auto_configure:
 	sed -e 's,@\$$(CC),\$$(CC),' \
 		-e 's,@\$$(LD),\$$(LD),' \
