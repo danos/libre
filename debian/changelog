@@ -1,3 +1,37 @@
+libre (0.5.3-1) experimental; urgency=medium
+
+  [ upstream ]
+  * New release(s):
+    + Handle Debian/kFreeBSD and Hurd.
+    + Make enum ice_role type public.
+    + Fix build for Solaris 11.
+    + Use unsigned for srtcp encrypted bit.
+    + Add tls_openssl_context() accessor function.
+    + Upgrade Windows project to VS2015.
+    + Makefile improvements.
+    + Remove session object "struct ice".
+    + Make sampling rate for telephone events configurable.
+
+  [ Jonas Smedegaard ]
+  * Add myself as uploader. Sort uploaders in control file.
+  * Update copyright info:
+    + Update alternate git source URL.
+    + Add Github issue tracker as preferred upstream contact.
+    + Tidy and sort copyright holders.
+    + Use License sections, wrapped at 72 chars.
+    + Extend coverage for main upstream author.
+  * Have git-buildpackage filter any .git* file.
+  * Add copyright-check maintainer script to source.
+  * Drop patch 1001 adopted upstream.
+  * Tidy patch 0001 to use DEP3 header.
+  * Git-ignore quilt .pc dir.
+  * Relax symbols check when targeting experimental.
+  * Remove Ramakrishnan Muthukrishnan as uploader.
+    Thanks for your contributions, Ramakrishnan!
+    Closes: Bug#859283. Thanks to Mattia Rizzolo.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sun, 21 May 2017 15:23:08 +0200
+
 libre (0.5.1-1) experimental; urgency=medium
 
   * New upstream version 0.5.1
