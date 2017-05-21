@@ -1,7 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: libre
 Source: http://www.creytiv.com/re.html
- https://github.com/alfredh/re
+ git://github.com/creytiv/re
 
 Files: *
 Copyright: Copyright (c) 2010 - 2015, Alfred E. Heggestad
