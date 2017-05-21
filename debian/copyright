@@ -6,9 +6,9 @@ Source: http://www.creytiv.com/re.html
 
 Files: *
 Copyright:
-  2010-2015, Alfred E. Heggestad
-  2010-2015, Creytiv.com
-  2010-2015, Richard Aas
+  2010-2017, Alfred E. Heggestad
+  2010-2017, Creytiv.com
+  2010-2017, Richard Aas
 License: BSD-3-clause
 
 Files: src/crc32/crc32.c
