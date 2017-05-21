@@ -2,7 +2,10 @@ Source: libre
 Section: comm
 Priority: optional
 Maintainer: Debian VoIP Team <pkg-voip-maintainers@lists.alioth.debian.org>
-Uploaders: Simon Josefsson <simon@josefsson.org>, Vasudev Kamath <vasudev@copyninja.info>, Ramakrishnan Muthukrishnan <rkrishnan@debian.org>
+Uploaders: Jonas Smedegaard <dr@jones.dk>,
+ Ramakrishnan Muthukrishnan <rkrishnan@debian.org>,
+ Simon Josefsson <simon@josefsson.org>,
+ Vasudev Kamath <vasudev@copyninja.info>
 Standards-Version: 3.9.8
 Build-Depends: debhelper (>= 9), libssl-dev, pkg-kde-tools
 Homepage: http://www.creytiv.com/re
