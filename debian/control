@@ -3,7 +3,6 @@ Section: comm
 Priority: optional
 Maintainer: Debian VoIP Team <pkg-voip-maintainers@lists.alioth.debian.org>
 Uploaders: Jonas Smedegaard <dr@jones.dk>,
- Ramakrishnan Muthukrishnan <rkrishnan@debian.org>,
  Simon Josefsson <simon@josefsson.org>,
  Vasudev Kamath <vasudev@copyninja.info>
 Standards-Version: 3.9.8
