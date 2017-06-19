@@ -1,3 +1,10 @@
+libre (0.5.3-2) unstable; urgency=medium
+
+  * Declare compliance with Debian Policy 4.0.0.
+  * Update symbols: 16 added/updated.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Mon, 19 Jun 2017 20:11:53 +0200
+
 libre (0.5.3-1) experimental; urgency=medium
 
   [ upstream ]
