@@ -5,7 +5,7 @@ Maintainer: Debian VoIP Team <pkg-voip-maintainers@lists.alioth.debian.org>
 Uploaders: Jonas Smedegaard <dr@jones.dk>,
  Simon Josefsson <simon@josefsson.org>,
  Vasudev Kamath <vasudev@copyninja.info>
-Standards-Version: 3.9.8
+Standards-Version: 4.0.0
 Build-Depends: debhelper (>= 9), libssl-dev, pkg-kde-tools
 Homepage: http://www.creytiv.com/re
 Vcs-Git: https://anonscm.debian.org/git/pkg-voip/libre.git
