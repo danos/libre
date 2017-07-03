@@ -158,7 +158,6 @@ libre.so.0 libre0 #MINVER#
  httpauth_digest_response_auth@Base 0.4.14
  httpauth_digest_response_decode@Base 0.4.14
  https_listen@Base 0.4.14
- (arch=alpha ppc64)ice_alloc@Base 0.5.3
  ice_attr_cand@Base 0.4.14
  ice_attr_lite@Base 0.4.14
  ice_attr_mismatch@Base 0.4.14
@@ -172,24 +171,16 @@ libre.so.0 libre0 #MINVER#
  ice_cand_encode@Base 0.4.14
  ice_cand_name2type@Base 0.4.14
  ice_cand_type2name@Base 0.4.14
- (arch=!alpha !ppc64)ice_candpair_set_states@Base 0.5.3
+ ice_candpair_set_states@Base 0.5.3
  ice_candpair_state2name@Base 0.4.14
  ice_checkl_state2name@Base 0.4.14
- (arch=alpha ppc64)ice_conf@Base 0.5.3
- (arch=alpha ppc64)ice_conncheck_start@Base 0.5.3
- (arch=alpha ppc64)ice_debug@Base 0.5.3
  ice_list_unique@Base 0.4.14
- (arch=alpha ppc64)ice_medialist@Base 0.5.3
  ice_mode2name@Base 0.4.14
- (arch=alpha ppc64)ice_pwd@Base 0.5.3
  ice_remotecands_avail@Base 0.4.14
  ice_remotecands_encode@Base 0.4.14
  ice_role2name@Base 0.4.14
  ice_sdp_decode@Base 0.4.14
- (arch=alpha ppc64)ice_set_conf@Base 0.5.3
- (arch=alpha ppc64)ice_set_offerer@Base 0.5.3
  ice_switch_local_role@Base 0.4.14
- (arch=alpha ppc64)ice_ufrag@Base 0.5.3
  icecomp_debug@Base 0.4.14
  icecomp_printf@Base 0.4.14
  icem_add_chan@Base 0.4.14
@@ -227,7 +218,7 @@ libre.so.0 libre0 #MINVER#
  icem_comp_set_default_cand@Base 0.4.14
  icem_comp_set_default_rcand@Base 0.4.14
  icem_comp_set_selected@Base 0.4.14
- (arch=!alpha !ppc64)icem_conf@Base 0.5.3
+ icem_conf@Base 0.5.3
  icem_conncheck_continue@Base 0.4.14
  icem_conncheck_schedule_check@Base 0.4.14
  icem_conncheck_send@Base 0.4.14
@@ -241,7 +232,7 @@ libre.so.0 libre0 #MINVER#
  icem_lcand_find_checklist@Base 0.4.14
  icem_lcandl@Base 0.4.14
  icem_lite_set_default_candidates@Base 0.4.14
- (arch=!alpha !ppc64)icem_local_role@Base 0.5.3
+ icem_local_role@Base 0.5.3
  icem_mismatch@Base 0.4.14
  icem_printf@Base 0.4.14
  icem_rcand_add@Base 0.4.14
@@ -249,9 +240,9 @@ libre.so.0 libre0 #MINVER#
  icem_rcandl@Base 0.4.14
  icem_sdp_decode@Base 0.4.14
  icem_selected_laddr@Base 0.4.14
- (arch=!alpha !ppc64)icem_set_conf@Base 0.5.3
+ icem_set_conf@Base 0.5.3
  icem_set_name@Base 0.4.14
- (arch=!alpha !ppc64)icem_set_role@Base 0.5.3
+ icem_set_role@Base 0.5.3
  icem_stund_recv@Base 0.4.14
  icem_update@Base 0.4.14
  icem_validl@Base 0.4.14
@@ -832,7 +823,7 @@ libre.so.0 libre0 #MINVER#
  telev_recv@Base 0.4.14
  telev_rtpfmt@Base 0.4.14
  telev_send@Base 0.4.14
- (arch=!alpha !ppc64)telev_set_srate@Base 0.5.3
+ telev_set_srate@Base 0.5.3
  tls_add_ca@Base 0.4.14
  tls_alloc@Base 0.4.14
  tls_cipher_name@Base 0.4.16
