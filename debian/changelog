@@ -1,3 +1,9 @@
+libre (0.5.4-2) unstable; urgency=medium
+
+  * Update symbols: Stop exclude 1 symbol for alpha and ppc64.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Mon, 03 Jul 2017 13:31:06 +0200
+
 libre (0.5.4-1) unstable; urgency=medium
 
   [ upstream ]
