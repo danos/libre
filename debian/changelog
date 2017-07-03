@@ -1,3 +1,11 @@
+libre (0.5.4-1) unstable; urgency=medium
+
+  [ upstream ]
+  * New release:
+    + Add rtp extension bit to the api.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Mon, 03 Jul 2017 11:54:31 +0200
+
 libre (0.5.3-2) unstable; urgency=medium
 
   * Declare compliance with Debian Policy 4.0.0.
