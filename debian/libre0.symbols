@@ -218,6 +218,7 @@ libre.so.0 libre0 #MINVER#
  icem_comp_set_default_cand@Base 0.4.14
  icem_comp_set_default_rcand@Base 0.4.14
  icem_comp_set_selected@Base 0.4.14
+ icem_comps_set_default_cand@Base 0.5.5
  icem_conf@Base 0.5.3
  icem_conncheck_continue@Base 0.4.14
  icem_conncheck_schedule_check@Base 0.4.14
@@ -225,10 +226,12 @@ libre.so.0 libre0 #MINVER#
  icem_conncheck_start@Base 0.4.14
  icem_conncheck_stop@Base 0.4.14
  icem_debug@Base 0.4.14
- icem_gather_relay@Base 0.4.14
- icem_gather_srflx@Base 0.4.14
+#MISSING: 0.5.5-1# icem_gather_relay@Base 0.4.14
+#MISSING: 0.5.5-1# icem_gather_srflx@Base 0.4.14
  icem_lcand_add@Base 0.4.14
  icem_lcand_add_base@Base 0.4.14
+ icem_lcand_addr@Base 0.5.5
+ icem_lcand_base@Base 0.5.5
  icem_lcand_find_checklist@Base 0.4.14
  icem_lcandl@Base 0.4.14
  icem_lite_set_default_candidates@Base 0.4.14
@@ -243,6 +246,8 @@ libre.so.0 libre0 #MINVER#
  icem_set_conf@Base 0.5.3
  icem_set_name@Base 0.4.14
  icem_set_role@Base 0.5.3
+ icem_set_turn_client@Base 0.5.5
+ icem_stun@Base 0.5.5
  icem_stund_recv@Base 0.4.14
  icem_update@Base 0.4.14
  icem_validl@Base 0.4.14
@@ -324,6 +329,7 @@ libre.so.0 libre0 #MINVER#
  mod_export@Base 0.4.14
  mod_find@Base 0.4.14
  mod_init@Base 0.4.14
+ mod_list@Base 0.5.5
  mod_load@Base 0.4.14
  mqueue_alloc@Base 0.4.14
  mqueue_push@Base 0.4.14
@@ -665,6 +671,7 @@ libre.so.0 libre0 #MINVER#
  sipnot_notify@Base 0.4.14
  sipnot_refresh@Base 0.4.14
  sipnot_reply@Base 0.4.14
+ sipreg_laddr@Base 0.5.5
  sipreg_register@Base 0.4.14
  sipsess_accept@Base 0.4.14
  sipsess_ack@Base 0.4.14
