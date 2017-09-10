@@ -14,6 +14,7 @@ Files: Makefile
  include/re_conf.h
  include/re_crc32.h
  include/re_dbg.h
+ include/re_dns.h
  include/re_fmt.h
  include/re_hash.h
  include/re_hmac.h
@@ -116,7 +117,6 @@ Files: Makefile
  src/ice/chklist.c
  src/ice/comp.c
  src/ice/connchk.c
- src/ice/gather.c
  src/ice/ice.h
  src/ice/icem.c
  src/ice/icesdp.c
@@ -361,11 +361,6 @@ License: BSD~unspecified
 Files: debian/copyright-check
 Copyright: 2016-2017, Jonas Smedegaard <dr@jones.dk>
 License: GPL-3+
- FIXME
-
-Files: include/re_dns.h
-Copyright: 2010, Creytiv.com
-License: MPL-4
  FIXME
 
 Files: src/crc32/crc32.c
