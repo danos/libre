@@ -5,7 +5,8 @@ Author: Vasudev Kamath <kamathvasudev@gmail.com>
 Forwarded: no
 Reviewed-By: Ramakrishnan Muthukrishnan <rkrishnan@debian.org>
 Last-Update: 2016-01-20
-
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 --- a/mk/re.mk
 +++ b/mk/re.mk
 @@ -197,7 +197,7 @@
