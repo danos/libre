@@ -19,6 +19,17 @@ Files: src/md5/md5.*
 Copyright: 1999-2000,2002, Aladdin Enterprises
 License: md5-license
 
+Files: debian/*
+Copyright:
+  2016-2017, Jonas Smedegaard <dr@jones.dk>
+License-Grant:
+ This program is free software;
+ you can redistribute it and/or modify it
+ under the terms of the GNU General Public License
+ as published by the Free Software Foundation;
+ either version 3, or (at your option) any later version.
+License: GPL-3+
+
 License: BSD-3-clause
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are
@@ -49,6 +60,9 @@ License: BSD-3-clause
 License: crc32-license
  You may use this program, or code or tables extracted from it, as
  desired without restriction.
+
+License: GPL-3+
+License-Reference: /usr/share/common-licenses/GPL-3
 
 License: md5-license
   This software is provided 'as-is', without any express or implied
