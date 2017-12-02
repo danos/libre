@@ -1,3 +1,24 @@
+libre (0.5.6-1) unstable; urgency=medium
+
+  [ upstream ]
+  * New release.
+
+  [ Jonas Smedegaard ]
+  * Update watch file:
+    + Bump watch file to format 4.
+    + Add usage comment.
+    + Use patterns for version and suffix.
+  * Declare compliance with Debian Policy 4.1.1.
+  * Modernize Vcs-* fields: Use git (not cgit) in path.
+  * Update copyright info: License my contributions as GPL-3+.
+  * Add lintian overrides regarding license in License-Reference field.
+    See bug#s786450.
+  * Update symbols: 6 added, 2 dropped.
+  * Add lintian overrides regarding GPL linked with OpenSSL: Packaging
+    is not linked with upstream code.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 02 Dec 2017 20:55:42 +0100
+
 libre (0.5.5-1) unstable; urgency=medium
 
   [ upstream ]

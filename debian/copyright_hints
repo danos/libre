@@ -105,7 +105,9 @@ Files: Makefile
  src/hmac/mod.mk
  src/hmac/openssl/hmac.c
  src/http/auth.c
+ src/http/chunk.c
  src/http/client.c
+ src/http/http.h
  src/http/mod.mk
  src/http/msg.c
  src/http/server.c
@@ -316,6 +318,7 @@ Files: debian/compat
  debian/gbp.conf
  debian/libre-dev.install
  debian/libre0.install
+ debian/libre0.lintian-overrides
  debian/libre0.symbols
  debian/patches/0001-get-correct-multiarch-triplet.patch
  debian/patches/series
@@ -365,6 +368,12 @@ License: GPL-3+
 
 Files: src/crc32/crc32.c
 Copyright: 1986, Gary S. Brown. You may use this program, or
+License: UNKNOWN
+ FIXME
+
+Files: debian/source/lintian-overrides
+Copyright: GPL-3+
+  gpl-3+
 License: UNKNOWN
  FIXME
 
