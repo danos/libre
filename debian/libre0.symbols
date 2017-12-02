@@ -88,6 +88,7 @@ libre.so.0 libre0 #MINVER#
  dtls_connect@Base 0.4.14
  dtls_listen@Base 0.4.14
  dtls_peer@Base 0.5.0
+ dtls_recv_packet@Base 0.5.6
  dtls_send@Base 0.4.14
  dtls_set_handlers@Base 0.4.14
  dtls_set_mtu@Base 0.4.16
@@ -131,6 +132,7 @@ libre.so.0 libre0 #MINVER#
  http_auth_check@Base 0.4.14
  http_auth_check_request@Base 0.4.14
  http_auth_print_challenge@Base 0.4.14
+ http_chunk_decode@Base 0.5.6
  http_client_alloc@Base 0.4.14
  http_conn_close@Base 0.4.14
  http_conn_peer@Base 0.4.14
@@ -150,8 +152,9 @@ libre.so.0 libre0 #MINVER#
  http_msg_xhdr_count@Base 0.4.14
  http_msg_xhdr_has_value@Base 0.4.14
  http_reply@Base 0.4.14
- http_req_tcp@Base 0.4.14
- http_req_tls@Base 0.4.14
+ http_req_set_conn_handler@Base 0.5.6
+#MISSING: 0.5.6-1# http_req_tcp@Base 0.4.14
+#MISSING: 0.5.6-1# http_req_tls@Base 0.4.14
  http_request@Base 0.4.14
  http_sock_tcp@Base 0.4.14
  httpauth_digest_challenge_decode@Base 0.4.14
@@ -190,6 +193,7 @@ libre.so.0 libre0 #MINVER#
  icem_cand_find@Base 0.4.14
  icem_cand_print@Base 0.4.14
  icem_cand_redund_elim@Base 0.4.14
+ icem_cand_type@Base 0.5.6
  icem_candpair_alloc@Base 0.4.14
  icem_candpair_cancel@Base 0.4.14
  icem_candpair_clone@Base 0.4.14
@@ -243,6 +247,8 @@ libre.so.0 libre0 #MINVER#
  icem_rcandl@Base 0.4.14
  icem_sdp_decode@Base 0.4.14
  icem_selected_laddr@Base 0.4.14
+ icem_selected_lcand@Base 0.5.6
+ icem_selected_rcand@Base 0.5.6
  icem_set_conf@Base 0.5.3
  icem_set_name@Base 0.4.14
  icem_set_role@Base 0.5.3
