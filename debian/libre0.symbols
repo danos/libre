@@ -324,6 +324,7 @@ libre.so.0 libre0 #MINVER#
  mem_realloc@Base 0.4.14
  mem_reallocarray@Base 0.4.14
  mem_ref@Base 0.4.14
+ mem_seccmp@Base 0.5.7
  mem_status@Base 0.4.14
  mem_threshold_set@Base 0.4.14
  mem_zalloc@Base 0.4.14
@@ -842,8 +843,8 @@ libre.so.0 libre0 #MINVER#
  tls_cipher_name@Base 0.4.16
  tls_fingerprint@Base 0.4.14
  tls_flush_error@Base 0.5.0
- tls_method_tcp@Base 0.5.0
- tls_method_udp@Base 0.5.0
+#MISSING: 0.5.7-1# tls_method_tcp@Base 0.5.0
+#MISSING: 0.5.7-1# tls_method_udp@Base 0.5.0
  tls_openssl_context@Base 0.5.3
  tls_peer_common_name@Base 0.4.14
  tls_peer_fingerprint@Base 0.4.14
