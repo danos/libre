@@ -151,6 +151,7 @@ Files: Makefile
  src/md5/wrap.c
  src/mem/mem.c
  src/mem/mod.mk
+ src/mem/secure.c
  src/mod/dl.c
  src/mod/mod.c
  src/mod/mod.mk
@@ -307,7 +308,7 @@ Files: Makefile
  src/websock/websock.c
 Copyright: 2010, Creytiv.com
   2010-2015, Creytiv.com
-  2010-2017, Creytiv.com
+  2010-2018, Creytiv.com
   2011, Creytiv.com
 License: UNKNOWN
  FIXME
@@ -350,9 +351,9 @@ License: Zlib
  FIXME
 
 Files: docs/COPYING
-Copyright: 2010-2017, Alfred E. Heggestad
-  2010-2017, Creytiv.com
-  2010-2017, Richard Aas
+Copyright: 2010-2018, Alfred E. Heggestad
+  2010-2018, Creytiv.com
+  2010-2018, Richard Aas
 License: BSD-3-clause
  FIXME
 

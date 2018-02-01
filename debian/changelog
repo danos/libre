@@ -1,3 +1,14 @@
+libre (0.5.7-1) unstable; urgency=medium
+
+  [ upstream ]
+  * New release.
+
+  [ Jonas Smedegaard ]
+  * Update copyright info: Extend coverage for main upstream authors.
+  * Update symbols: 1 added, 2 removed.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Thu, 01 Feb 2018 21:06:38 +0100
+
 libre (0.5.6-1) unstable; urgency=medium
 
   [ upstream ]
