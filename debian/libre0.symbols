@@ -4,8 +4,10 @@ libre.so.0 libre0 #MINVER#
  _mod_open@Base 0.4.14
  _mod_sym@Base 0.4.14
  aes_alloc@Base 0.4.14
+ aes_authenticate@Base 0.5.8
  aes_decr@Base 0.4.14
  aes_encr@Base 0.4.14
+ aes_get_authtag@Base 0.5.8
  aes_set_iv@Base 0.4.14
  base64_decode@Base 0.4.14
  base64_encode@Base 0.4.14
@@ -716,6 +718,7 @@ libre.so.0 libre0 #MINVER#
  srtp_encrypt@Base 0.4.14
  srtp_get_index@Base 0.4.14
  srtp_iv_calc@Base 0.4.14
+ srtp_iv_calc_gcm@Base 0.5.8
  srtp_replay_check@Base 0.4.14
  srtp_replay_init@Base 0.4.14
  srtp_suite_name@Base 0.4.14
@@ -920,6 +923,7 @@ libre.so.0 libre0 #MINVER#
  uri_password_unescape@Base 0.4.14
  uri_user_escape@Base 0.4.14
  uri_user_unescape@Base 0.4.14
+ utf8_byteseq@Base 0.5.8
  utf8_decode@Base 0.4.14
  utf8_encode@Base 0.4.14
  websock_accept@Base 0.4.14
