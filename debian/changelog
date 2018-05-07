@@ -1,3 +1,16 @@
+libre (0.5.8-1) unstable; urgency=medium
+
+  [ upstream ]
+  * New release.
+
+  [ Jonas Smedegaard ]
+  * Declare compliance with Debian Policy 4.1.4.
+  * Update Vcs-* fields: Source hosted at Salsa.debian.org now.
+  * Fix Homepage URL.
+  * Update symbols: 4 added.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Mon, 07 May 2018 14:09:31 +0200
+
 libre (0.5.7-1) unstable; urgency=medium
 
   [ upstream ]
