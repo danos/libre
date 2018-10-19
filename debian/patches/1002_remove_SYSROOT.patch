@@ -1,0 +1,46 @@
+Description: Remove unused MACHINE.
+ With properly resolved system header locations (see separate patch)
+ the SYSROOT variable is unused and can be removed.
+Author: Helmut Grohne <helmut@subdivi.de>
+Bug-Debian: https://bugs.debian.org/911358
+Last-Update: 2018-10-19
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/mk/re.mk
++++ b/mk/re.mk
+@@ -16,7 +16,6 @@
+ #   OPT_SPEED      If non-empty, optimize for speed
+ #   PROJECT        Project name
+ #   RELEASE        Release build
+-#   SYSROOT        System root of library and include files
+ #   SYSROOT_ALT    Alternative system root of library and include files
+ #   USE_OPENSSL    If non-empty, link to libssl library
+ #   USE_ZLIB       If non-empty, link to libz library
+@@ -47,11 +46,6 @@
+ endif
+ 
+ 
+-# Default system root
+-ifeq ($(SYSROOT),)
+-SYSROOT := /usr
+-endif
+-
+ # Alternative Systemroot
+ ifeq ($(SYSROOT_ALT),)
+ SYSROOT_ALT := $(shell [ -d /sw/include ] && echo "/sw")
+@@ -337,7 +331,6 @@
+ 	LIB_SUFFIX	:= .dll
+ 	MOD_SUFFIX	:= .dll
+ 	BIN_SUFFIX	:= .exe
+-	SYSROOT		:= /usr/$(MACHINE)/
+ endif
+ 
+ CFLAGS	+= -DOS=\"$(OS)\"
+@@ -687,7 +680,6 @@
+ 	@echo "  GCOV:          $(GCOV)"
+ 	@echo "  GPROF:         $(GPROF)"
+ 	@echo "  CROSS_COMPILE: $(CROSS_COMPILE)"
+-	@echo "  SYSROOT:       $(SYSROOT)"
+ 	@echo "  SYSROOT_ALT:   $(SYSROOT_ALT)"
+ 	@echo "  LIB_SUFFIX:    $(LIB_SUFFIX)"
+ 	@echo "  MOD_SUFFIX:    $(MOD_SUFFIX)"

@@ -1,0 +1,53 @@
+Description: Remove unused MACHINE.
+ Without SYSROOT (see separate patch) MACHINE is mostly unused:
+ The only use is setting up CROSS_COMPILE and OS,
+ but these are supposed to be set by a user for cross compilation.
+ Removing this code makes win32 behave just like any other arch
+ and MACHINE can go in the bucket.
+Author: Helmut Grohne <helmut@subdivi.de>
+Bug-Debian: https://bugs.debian.org/911358
+Last-Update: 2018-10-19
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/mk/re.mk
++++ b/mk/re.mk
+@@ -191,23 +191,10 @@
+ # OS section
+ #
+ 
+-MACHINE   := $(shell $(CC) -dumpmachine)
+-
+ ifeq ($(CROSS_COMPILE),)
+ OS        := $(shell uname -s | sed -e s/SunOS/solaris/ | tr "[A-Z]" "[a-z]")
+ endif
+ 
+-
+-ifneq ($(strip $(filter i386-mingw32 i486-mingw32 i586-mingw32msvc \
+-	i686-w64-mingw32 x86_64-w64-mingw32 mingw32, \
+-	$(MACHINE))),)
+-	OS   := win32
+-ifeq ($(MACHINE), mingw32)
+-	CROSS_COMPILE :=
+-endif
+-endif
+-
+-
+ # default
+ LIB_SUFFIX	:= .so
+ MOD_SUFFIX	:= .so
+@@ -326,7 +313,6 @@
+ 	APP_LFLAGS	+= -Wl,--export-all-symbols
+ 	AR		:= ar
+ 	AFLAGS		:= cru
+-	CROSS_COMPILE	?= $(MACHINE)-
+ 	RANLIB		:= $(CROSS_COMPILE)ranlib
+ 	LIB_SUFFIX	:= .dll
+ 	MOD_SUFFIX	:= .dll
+@@ -654,7 +640,6 @@
+ 	@echo "info - $(PROJECT) version $(VERSION)"
+ 	@echo "  MODULES:       $(MODULES)"
+ #	@echo "  SRCS:          $(SRCS)"
+-	@echo "  MACHINE:       $(MACHINE)"
+ 	@echo "  ARCH:          $(ARCH)"
+ 	@echo "  OS:            $(OS)"
+ 	@echo "  BUILD:         $(BUILD)"
