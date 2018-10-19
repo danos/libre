@@ -321,7 +321,10 @@ Files: debian/compat
  debian/libre0.install
  debian/libre0.lintian-overrides
  debian/libre0.symbols
- debian/patches/0001-get-correct-multiarch-triplet.patch
+ debian/patches/1001_system_header_locations.patch
+ debian/patches/1002_remove_SYSROOT.patch
+ debian/patches/1003_remove_MACHINE.patch
+ debian/patches/README
  debian/patches/series
  debian/rules
  debian/source/format
