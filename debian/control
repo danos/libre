@@ -2,11 +2,15 @@ Source: libre
 Section: comm
 Priority: optional
 Maintainer: Debian VoIP Team <pkg-voip-maintainers@lists.alioth.debian.org>
-Uploaders: Jonas Smedegaard <dr@jones.dk>,
+Uploaders:
+ Jonas Smedegaard <dr@jones.dk>,
  Simon Josefsson <simon@josefsson.org>,
- Vasudev Kamath <vasudev@copyninja.info>
+ Vasudev Kamath <vasudev@copyninja.info>,
 Standards-Version: 4.2.1
-Build-Depends: debhelper (>= 9), libssl-dev, pkg-kde-tools
+Build-Depends:
+ debhelper (>= 9),
+ libssl-dev,
+ pkg-kde-tools,
 Homepage: http://www.creytiv.com/re.html
 Vcs-Git: https://salsa.debian.org/pkg-voip-team/libre.git
 Vcs-Browser: https://salsa.debian.org/pkg-voip-team/libre
@@ -15,7 +19,9 @@ Rules-Requires-Root: no
 Package: libre0
 Architecture: any
 Section: libs
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
 Description: Generic library for real-time communications with async IO support
  Libre is a portable and generic library for real-time communications
  with async IO support and a complete SIP stack with support for protocols
@@ -43,7 +49,10 @@ Description: Generic library for real-time communications with async IO support
 Package: libre-dev
 Architecture: any
 Section: libdevel
-Depends: libre0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Depends:
+ libre0 (= ${binary:Version}),
+ ${misc:Depends},
+ ${shlibs:Depends},
 Description: Generic library for real-time communications (development files)
  Libre is a portable and generic library for real-time communications
  with async IO support and a complete SIP stack with support for protocols
