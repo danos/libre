@@ -389,7 +389,11 @@ libre.so.0 libre0 #MINVER#
  odict_entry_add@Base 0.4.14
  odict_entry_debug@Base 0.4.14
  odict_entry_del@Base 0.4.14
+ odict_get_boolean@Base 0.6.0
+ odict_get_number@Base 0.6.0
+ odict_get_type@Base 0.6.0
  odict_lookup@Base 0.4.14
+ odict_string@Base 0.6.0
  odict_type_iscontainer@Base 0.4.14
  odict_type_isreal@Base 0.4.14
  odict_type_name@Base 0.4.14
@@ -477,6 +481,45 @@ libre.so.0 libre0 #MINVER#
  rtcp_stats@Base 0.4.14
  rtcp_type_name@Base 0.4.14
  rtcp_vencode@Base 0.4.14
+ rtmp_accept@Base 0.6.0
+ rtmp_amf_command@Base 0.6.0
+ rtmp_amf_data@Base 0.6.0
+ rtmp_amf_decode@Base 0.6.0
+ rtmp_amf_encode_boolean@Base 0.6.0
+ rtmp_amf_encode_null@Base 0.6.0
+ rtmp_amf_encode_number@Base 0.6.0
+ rtmp_amf_encode_string@Base 0.6.0
+ rtmp_amf_reply@Base 0.6.0
+ rtmp_amf_request@Base 0.6.0
+ rtmp_amf_vencode_object@Base 0.6.0
+ rtmp_chunker@Base 0.6.0
+ rtmp_command_header_encode@Base 0.6.0
+ rtmp_conn_assign_chunkid@Base 0.6.0
+ rtmp_conn_assign_tid@Base 0.6.0
+ rtmp_conn_debug@Base 0.6.0
+ rtmp_conn_send_msg@Base 0.6.0
+ rtmp_conn_stream@Base 0.6.0
+ rtmp_conn_tcpconn@Base 0.6.0
+ rtmp_connect@Base 0.6.0
+ rtmp_control@Base 0.6.0
+ rtmp_ctrans_response@Base 0.6.0
+ rtmp_dechunker_alloc@Base 0.6.0
+ rtmp_dechunker_debug@Base 0.6.0
+ rtmp_dechunker_receive@Base 0.6.0
+ rtmp_dechunker_set_chunksize@Base 0.6.0
+ rtmp_event_name@Base 0.6.0
+ rtmp_header_decode@Base 0.6.0
+ rtmp_header_encode@Base 0.6.0
+ rtmp_header_print@Base 0.6.0
+ rtmp_packet_type_name@Base 0.6.0
+ rtmp_play@Base 0.6.0
+ rtmp_publish@Base 0.6.0
+ rtmp_send_amf_command@Base 0.6.0
+ rtmp_send_audio@Base 0.6.0
+ rtmp_send_video@Base 0.6.0
+ rtmp_stream_alloc@Base 0.6.0
+ rtmp_stream_create@Base 0.6.0
+ rtmp_stream_find@Base 0.6.0
  rtp_alloc@Base 0.4.14
  rtp_debug@Base 0.4.14
  rtp_decode@Base 0.4.14
@@ -910,6 +953,7 @@ libre.so.0 libre0 #MINVER#
  unix2ntp@Base 0.4.14
  uri_cmp@Base 0.4.14
  uri_decode@Base 0.4.14
+ uri_decode_hostport@Base 0.6.0
  uri_encode@Base 0.4.14
  uri_header_escape@Base 0.4.14
  uri_header_get@Base 0.4.14
