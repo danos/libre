@@ -22,22 +22,27 @@ Section: libs
 Depends:
  ${misc:Depends},
  ${shlibs:Depends},
-Description: Generic library for real-time communications with async IO support
+Description: generic library for real-time communications with async IO support
  Libre is a portable and generic library for real-time communications
  with async IO support and a complete SIP stack with support for protocols
  such as SDP, RTP/RTCP, STUN/TURN/ICE, BFCP, HTTP and DNS Client.
  .
  The current features are:
  .
-  SIP Stack (RFC 3261)
-  SDP parser
-  RTP and RTCP stack
-  DNS-Client
-  STUN/TURN/ICE stack
-  BFCP
-  Jitter-buffer
-  Async I/O (poll, epoll, select)
-  UDP/TCP/TLS transport
+  * SIP Stack (RFC 3261)
+  * SDP
+  * RTP and RTCP
+  * SRTP and SRTCP (Secure RTP)
+  * DNS-Client
+  * STUN/TURN/ICE stack
+  * BFCP
+  * HTTP-stack with client/server
+  * Websockets
+  * Jitter-buffer
+  * Async I/O (poll, epoll, select, kqueue)
+  * UDP/TCP/TLS/DTLS transport
+  * JSON parser
+  * Real Time Messaging Protocol (RTMP)
  .
  Design goals:
  .
@@ -53,22 +58,27 @@ Depends:
  libre0 (= ${binary:Version}),
  ${misc:Depends},
  ${shlibs:Depends},
-Description: Generic library for real-time communications (development files)
+Description: generic library for real-time communications (development files)
  Libre is a portable and generic library for real-time communications
  with async IO support and a complete SIP stack with support for protocols
  such as SDP, RTP/RTCP, STUN/TURN/ICE, BFCP, HTTP and DNS Client.
  .
  The current features are:
  .
-  SIP Stack (RFC 3261)
-  SDP parser
-  RTP and RTCP stack
-  DNS-Client
-  STUN/TURN/ICE stack
-  BFCP
-  Jitter-buffer
-  Async I/O (poll, epoll, select)
-  UDP/TCP/TLS transport
+  * SIP Stack (RFC 3261)
+  * SDP
+  * RTP and RTCP
+  * SRTP and SRTCP (Secure RTP)
+  * DNS-Client
+  * STUN/TURN/ICE stack
+  * BFCP
+  * HTTP-stack with client/server
+  * Websockets
+  * Jitter-buffer
+  * Async I/O (poll, epoll, select, kqueue)
+  * UDP/TCP/TLS/DTLS transport
+  * JSON parser
+  * Real Time Messaging Protocol (RTMP)
  .
  Design goals:
  .
@@ -77,4 +87,4 @@ Description: Generic library for real-time communications (development files)
   RFC compliance
   IPv4 and IPv6 support
  .
- This package is only the library development files.
+ This package provides development headers.
