@@ -35,6 +35,7 @@ Files: Makefile
  include/re_natbd.h
  include/re_net.h
  include/re_odict.h
+ include/re_rtmp.h
  include/re_rtp.h
  include/re_sa.h
  include/re_sdp.h
@@ -184,9 +185,22 @@ Files: Makefile
  src/net/sockopt.c
  src/net/win32/wif.c
  src/odict/entry.c
+ src/odict/get.c
  src/odict/mod.mk
  src/odict/odict.c
  src/odict/type.c
+ src/rtmp/amf.c
+ src/rtmp/amf_dec.c
+ src/rtmp/amf_enc.c
+ src/rtmp/chunk.c
+ src/rtmp/conn.c
+ src/rtmp/control.c
+ src/rtmp/ctrans.c
+ src/rtmp/dechunk.c
+ src/rtmp/hdr.c
+ src/rtmp/mod.mk
+ src/rtmp/rtmp.h
+ src/rtmp/stream.c
  src/rtp/fb.c
  src/rtp/member.c
  src/rtp/mod.mk
@@ -339,6 +353,7 @@ Files: debian/compat
  mk/win32/re.vcxproj
  mk/win32/re.vcxproj.filters
  src/ice/ice.c
+ src/rtmp/README.md
  src/sha/sha1.c
  src/srtp/README
 Copyright: NONE

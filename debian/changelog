@@ -1,3 +1,16 @@
+libre (0.6.0-1) unstable; urgency=medium
+
+  [ upstream ]
+  * New release.
+
+  [ Jonas Smedegaard ]
+  * Wrap and sort control file, and debhelper install hints.
+  * Update long descriptions based on upstream README.
+    Fix lower-case initial letter in short descriptions.
+  * Update symbols: 45 symbols added.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Thu, 29 Nov 2018 22:06:47 +0100
+
 libre (0.5.9-2) unstable; urgency=medium
 
   * Update patches:
