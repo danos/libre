@@ -511,6 +511,7 @@ libre.so.0 libre0 #MINVER#
  rtmp_header_decode@Base 0.6.0
  rtmp_header_encode@Base 0.6.0
  rtmp_header_print@Base 0.6.0
+ rtmp_meta@Base 0.6.0-2~
  rtmp_packet_type_name@Base 0.6.0
  rtmp_play@Base 0.6.0
  rtmp_publish@Base 0.6.0
