@@ -1,3 +1,15 @@
+libre (0.6.0-2) unstable; urgency=medium
+
+  * Add patches cherry-picked upstream to fix rtmp issues.
+  * Unfuzz patches.
+  * Declare compliance with Debian Policy 4.3.0.
+  * Relax to build-depend unversioned on debhelper:
+    Needed version satisfied even in oldstable.
+  * Update copyright info: Extend coverage of packaging.
+  * Update symbols: 1 added.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 26 Jan 2019 03:13:23 +0100
+
 libre (0.6.0-1) unstable; urgency=medium
 
   [ upstream ]

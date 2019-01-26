@@ -335,6 +335,8 @@ Files: debian/compat
  debian/libre0.install
  debian/libre0.lintian-overrides
  debian/libre0.symbols
+ debian/patches/020181130~c847353.patch
+ debian/patches/020181210~cd1dd6f.patch
  debian/patches/1001_system_header_locations.patch
  debian/patches/1002_remove_SYSROOT.patch
  debian/patches/1003_remove_MACHINE.patch
