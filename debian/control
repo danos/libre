@@ -6,7 +6,7 @@ Uploaders:
  Jonas Smedegaard <dr@jones.dk>,
  Simon Josefsson <simon@josefsson.org>,
  Vasudev Kamath <vasudev@copyninja.info>,
-Standards-Version: 4.2.1
+Standards-Version: 4.3.0
 Build-Depends:
  debhelper (>= 9),
  libssl-dev,
