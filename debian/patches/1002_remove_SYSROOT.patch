@@ -36,7 +36,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  endif
  
  CFLAGS	+= -DOS=\"$(OS)\"
-@@ -687,7 +680,6 @@
+@@ -692,7 +685,6 @@
  	@echo "  GCOV:          $(GCOV)"
  	@echo "  GPROF:         $(GPROF)"
  	@echo "  CROSS_COMPILE: $(CROSS_COMPILE)"
