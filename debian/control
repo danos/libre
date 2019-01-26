@@ -8,7 +8,7 @@ Uploaders:
  Vasudev Kamath <vasudev@copyninja.info>,
 Standards-Version: 4.3.0
 Build-Depends:
- debhelper (>= 9),
+ debhelper,
  libssl-dev,
  pkg-kde-tools,
 Homepage: http://www.creytiv.com/re.html
