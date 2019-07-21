@@ -5,7 +5,7 @@ Maintainer: Debian VoIP Team <pkg-voip-maintainers@lists.alioth.debian.org>
 Uploaders:
  Jonas Smedegaard <dr@jones.dk>,
  Vasudev Kamath <vasudev@copyninja.info>,
-Standards-Version: 4.3.0
+Standards-Version: 4.4.0
 Build-Depends:
  debhelper,
  libssl-dev,
