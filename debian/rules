@@ -1,6 +1,9 @@
 #!/usr/bin/make -f
 
+include /usr/share/dpkg/buildtools.mk
+
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export CC
 
 DH_VERBOSE = 1
 
