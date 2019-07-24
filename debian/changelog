@@ -1,3 +1,10 @@
+libre (0.6.0-4) unstable; urgency=medium
+
+  * Fix FTCBFS: Pass CC for all targets.
+    Closes: Bug#932921. Thanks to Helmut Grohne.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Wed, 24 Jul 2019 20:23:37 -0300
+
 libre (0.6.0-3) unstable; urgency=medium
 
   * Drop Simon Josefsson as uploader by his request.
