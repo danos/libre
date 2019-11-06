@@ -3,44 +3,6 @@ libre.so.0 libre0 #MINVER#
  _mod_close@Base 0.4.14
  _mod_open@Base 0.4.14
  _mod_sym@Base 0.4.14
- aes_alloc@Base 0.4.14
- aes_authenticate@Base 0.5.8
- aes_decr@Base 0.4.14
- aes_encr@Base 0.4.14
- aes_get_authtag@Base 0.5.8
- aes_set_iv@Base 0.4.14
- base64_decode@Base 0.4.14
- base64_encode@Base 0.4.14
- base64_print@Base 0.4.14
- bfcp_attr_name@Base 0.4.14
- bfcp_attr_print@Base 0.4.14
- bfcp_attr_subattr@Base 0.4.14
- bfcp_attr_subattr_apply@Base 0.4.14
- bfcp_attrs_apply@Base 0.4.14
- bfcp_attrs_decode@Base 0.4.14
- bfcp_attrs_encode@Base 0.4.14
- bfcp_attrs_find@Base 0.4.14
- bfcp_attrs_print@Base 0.4.14
- bfcp_attrs_vencode@Base 0.4.14
- bfcp_edreply@Base 0.4.14
- bfcp_ereply@Base 0.4.14
- bfcp_errcode_name@Base 0.4.14
- bfcp_handle_response@Base 0.4.14
- bfcp_listen@Base 0.4.14
- bfcp_msg_attr@Base 0.4.14
- bfcp_msg_attr_apply@Base 0.4.14
- bfcp_msg_decode@Base 0.4.14
- bfcp_msg_encode@Base 0.4.14
- bfcp_msg_print@Base 0.4.14
- bfcp_msg_vencode@Base 0.4.14
- bfcp_notify@Base 0.4.14
- bfcp_prim_name@Base 0.4.14
- bfcp_reply@Base 0.4.14
- bfcp_reqstatus_name@Base 0.4.14
- bfcp_request@Base 0.4.14
- bfcp_send@Base 0.4.14
- bfcp_sock@Base 0.4.14
- bfcp_vrequest@Base 0.4.14
  ch_hex@Base 0.4.14
  conf_alloc@Base 0.4.14
  conf_alloc_buf@Base 0.4.14
@@ -49,7 +11,6 @@ libre.so.0 libre0 #MINVER#
  conf_get_bool@Base 0.4.14
  conf_get_str@Base 0.4.14
  conf_get_u32@Base 0.4.14
- crc32@Base 0.5.0
  dbg_close@Base 0.4.14
  dbg_handler_set@Base 0.4.14
  dbg_info@Base 0.4.14
@@ -60,42 +21,6 @@ libre.so.0 libre0 #MINVER#
  dbg_notice@Base 0.4.14
  dbg_printf@Base 0.4.14
  dbg_warning@Base 0.4.14
- dns_cstr_decode@Base 0.4.14
- dns_cstr_encode@Base 0.4.14
- dns_dname_decode@Base 0.4.14
- dns_dname_encode@Base 0.4.14
- dns_hdr_decode@Base 0.4.14
- dns_hdr_encode@Base 0.4.14
- dns_hdr_opcodename@Base 0.4.14
- dns_hdr_rcodename@Base 0.4.14
- dns_rr_alloc@Base 0.4.14
- dns_rr_classname@Base 0.4.14
- dns_rr_cmp@Base 0.4.14
- dns_rr_decode@Base 0.4.14
- dns_rr_encode@Base 0.4.14
- dns_rr_print@Base 0.4.14
- dns_rr_typename@Base 0.4.14
- dns_rrlist_apply2@Base 0.4.14
- dns_rrlist_apply@Base 0.4.14
- dns_rrlist_find@Base 0.4.14
- dns_rrlist_sort@Base 0.4.14
- dns_rrlist_sort_addr@Base 0.4.17
- dns_srv_get@Base 0.4.14
- dnsc_alloc@Base 0.4.14
- dnsc_notify@Base 0.4.14
- dnsc_query@Base 0.4.14
- dnsc_query_srv@Base 0.4.14
- dnsc_srv_set@Base 0.4.14
- dtls_accept@Base 0.4.14
- dtls_connect@Base 0.4.14
- dtls_listen@Base 0.4.14
- dtls_peer@Base 0.5.0
- dtls_recv_packet@Base 0.5.6
- dtls_send@Base 0.4.14
- dtls_set_handlers@Base 0.4.14
- dtls_set_mtu@Base 0.4.16
- dtls_set_peer@Base 0.5.0
- dtls_udp_sock@Base 0.4.14
  (arch=linux-any)epoll_check@Base 0.5.0
  fd_close@Base 0.4.14
  fd_debug@Base 0.4.14
@@ -108,7 +33,6 @@ libre.so.0 libre0 #MINVER#
  fmt_param_get@Base 0.4.14
  fs_gethome@Base 0.4.14
  fs_mkdir@Base 0.4.14
- get_resolv_dns@Base 0.4.14
  hash_alloc@Base 0.4.14
  hash_append@Base 0.4.14
  hash_apply@Base 0.4.14
@@ -128,147 +52,6 @@ libre.so.0 libre0 #MINVER#
  hash_unlink@Base 0.4.14
  hash_valid_size@Base 0.4.14
  hexdump@Base 0.4.14
- hmac_create@Base 0.4.14
- hmac_digest@Base 0.4.14
- hmac_sha1@Base 0.4.14
- http_auth_check@Base 0.4.14
- http_auth_check_request@Base 0.4.14
- http_auth_print_challenge@Base 0.4.14
- http_chunk_decode@Base 0.5.6
- http_client_alloc@Base 0.4.14
- http_conn_close@Base 0.4.14
- http_conn_peer@Base 0.4.14
- http_conn_tcp@Base 0.4.14
- http_conn_tls@Base 0.4.14
- http_creply@Base 0.4.14
- http_ereply@Base 0.4.14
- http_listen@Base 0.4.14
- http_msg_decode@Base 0.4.14
- http_msg_hdr@Base 0.4.14
- http_msg_hdr_apply@Base 0.4.14
- http_msg_hdr_count@Base 0.4.14
- http_msg_hdr_has_value@Base 0.4.14
- http_msg_print@Base 0.4.14
- http_msg_xhdr@Base 0.4.14
- http_msg_xhdr_apply@Base 0.4.14
- http_msg_xhdr_count@Base 0.4.14
- http_msg_xhdr_has_value@Base 0.4.14
- http_reply@Base 0.4.14
- http_req_set_conn_handler@Base 0.5.6
-#MISSING: 0.5.6-1# http_req_tcp@Base 0.4.14
-#MISSING: 0.5.6-1# http_req_tls@Base 0.4.14
- http_request@Base 0.4.14
- http_sock_tcp@Base 0.4.14
- httpauth_digest_challenge_decode@Base 0.4.14
- httpauth_digest_response_auth@Base 0.4.14
- httpauth_digest_response_decode@Base 0.4.14
- https_listen@Base 0.4.14
- ice_attr_cand@Base 0.4.14
- ice_attr_lite@Base 0.4.14
- ice_attr_mismatch@Base 0.4.14
- ice_attr_pwd@Base 0.4.14
- ice_attr_remote_cand@Base 0.4.14
- ice_attr_ufrag@Base 0.4.14
- ice_calc_pair_prio@Base 0.4.14
- ice_cand_attr_decode@Base 0.4.14
- ice_cand_attr_encode@Base 0.4.14
- ice_cand_calc_prio@Base 0.4.14
- ice_cand_encode@Base 0.4.14
- ice_cand_name2type@Base 0.4.14
- ice_cand_type2name@Base 0.4.14
- ice_candpair_set_states@Base 0.5.3
- ice_candpair_state2name@Base 0.4.14
- ice_checkl_state2name@Base 0.4.14
- ice_list_unique@Base 0.4.14
- ice_mode2name@Base 0.4.14
- ice_remotecands_avail@Base 0.4.14
- ice_remotecands_encode@Base 0.4.14
- ice_role2name@Base 0.4.14
- ice_sdp_decode@Base 0.4.14
- ice_switch_local_role@Base 0.4.14
- icecomp_debug@Base 0.4.14
- icecomp_printf@Base 0.4.14
- icem_add_chan@Base 0.4.14
- icem_alloc@Base 0.4.14
- icem_cand_add@Base 0.4.14
- icem_cand_default@Base 0.4.14
- icem_cand_find@Base 0.4.14
- icem_cand_print@Base 0.4.14
- icem_cand_redund_elim@Base 0.4.14
- icem_cand_type@Base 0.5.6
- icem_candpair_alloc@Base 0.4.14
- icem_candpair_cancel@Base 0.4.14
- icem_candpair_clone@Base 0.4.14
- icem_candpair_cmp@Base 0.4.14
- icem_candpair_cmp_fnd@Base 0.4.14
- icem_candpair_debug@Base 0.4.14
- icem_candpair_failed@Base 0.4.14
- icem_candpair_find@Base 0.4.14
- icem_candpair_find_compid@Base 0.4.14
- icem_candpair_find_rcand@Base 0.4.14
- icem_candpair_find_st@Base 0.4.14
- icem_candpair_iscompleted@Base 0.4.14
- icem_candpair_make_valid@Base 0.4.14
- icem_candpair_prio_order@Base 0.4.14
- icem_candpair_set_state@Base 0.4.14
- icem_candpairs_debug@Base 0.4.14
- icem_candpairs_flush@Base 0.4.14
- icem_cands_debug@Base 0.4.14
- icem_checkl@Base 0.4.14
- icem_checklist_form@Base 0.4.14
- icem_checklist_update@Base 0.4.14
- icem_comp_add@Base 0.4.14
- icem_comp_alloc@Base 0.4.14
- icem_comp_find@Base 0.4.14
- icem_comp_keepalive@Base 0.4.14
- icem_comp_set_default_cand@Base 0.4.14
- icem_comp_set_default_rcand@Base 0.4.14
- icem_comp_set_selected@Base 0.4.14
- icem_comps_set_default_cand@Base 0.5.5
- icem_conf@Base 0.5.3
- icem_conncheck_continue@Base 0.4.14
- icem_conncheck_schedule_check@Base 0.4.14
- icem_conncheck_send@Base 0.4.14
- icem_conncheck_start@Base 0.4.14
- icem_conncheck_stop@Base 0.4.14
- icem_debug@Base 0.4.14
-#MISSING: 0.5.5-1# icem_gather_relay@Base 0.4.14
-#MISSING: 0.5.5-1# icem_gather_srflx@Base 0.4.14
- icem_lcand_add@Base 0.4.14
- icem_lcand_add_base@Base 0.4.14
- icem_lcand_addr@Base 0.5.5
- icem_lcand_base@Base 0.5.5
- icem_lcand_find_checklist@Base 0.4.14
- icem_lcandl@Base 0.4.14
- icem_lite_set_default_candidates@Base 0.4.14
- icem_local_role@Base 0.5.3
- icem_mismatch@Base 0.4.14
- icem_printf@Base 0.4.14
- icem_rcand_add@Base 0.4.14
- icem_rcand_add_prflx@Base 0.4.14
- icem_rcandl@Base 0.4.14
- icem_sdp_decode@Base 0.4.14
- icem_selected_laddr@Base 0.4.14
- icem_selected_lcand@Base 0.5.6
- icem_selected_rcand@Base 0.5.6
- icem_set_conf@Base 0.5.3
- icem_set_name@Base 0.4.14
- icem_set_role@Base 0.5.3
- icem_set_turn_client@Base 0.5.5
- icem_stun@Base 0.5.5
- icem_stund_recv@Base 0.4.14
- icem_update@Base 0.4.14
- icem_validl@Base 0.4.14
- icem_verify_support@Base 0.4.14
- jbuf_alloc@Base 0.4.14
- jbuf_debug@Base 0.4.14
- jbuf_flush@Base 0.4.14
- jbuf_get@Base 0.4.14
- jbuf_put@Base 0.4.14
- jbuf_stats@Base 0.4.14
- json_decode@Base 0.4.14
- json_decode_odict@Base 0.4.14
- json_encode_odict@Base 0.4.14
  libre_close@Base 0.4.14
  libre_init@Base 0.4.14
  list_append@Base 0.4.14
@@ -316,8 +99,6 @@ libre.so.0 libre0 #MINVER#
  mbuf_write_u32@Base 0.4.14
  mbuf_write_u64@Base 0.4.14
  mbuf_write_u8@Base 0.4.14
- md5@Base 0.4.14
- md5_printf@Base 0.4.14
  mem_alloc@Base 0.4.14
  mem_debug@Base 0.4.14
  mem_deref@Base 0.4.14
@@ -330,8 +111,6 @@ libre.so.0 libre0 #MINVER#
  mem_status@Base 0.4.14
  mem_threshold_set@Base 0.4.14
  mem_zalloc@Base 0.4.14
- member_add@Base 0.4.14
- member_find@Base 0.4.14
  mod_add@Base 0.4.14
  mod_close@Base 0.4.14
  mod_debug@Base 0.4.14
@@ -346,17 +125,6 @@ libre.so.0 libre0 #MINVER#
  msg_ctype_decode@Base 0.4.14
  msg_param_decode@Base 0.4.14
  msg_param_exists@Base 0.4.14
- nat_filtering_alloc@Base 0.4.14
- nat_filtering_start@Base 0.4.14
- nat_genalg_alloc@Base 0.4.14
- nat_genalg_start@Base 0.4.14
- nat_hairpinning_alloc@Base 0.4.14
- nat_hairpinning_start@Base 0.4.14
- nat_lifetime_alloc@Base 0.4.14
- nat_lifetime_start@Base 0.4.14
- nat_mapping_alloc@Base 0.4.14
- nat_mapping_start@Base 0.4.14
- nat_type_str@Base 0.4.14
  net_af2name@Base 0.4.14
  net_default_gateway_get@Base 0.4.14
  net_default_source_addr_get@Base 0.4.14
@@ -379,26 +147,28 @@ libre.so.0 libre0 #MINVER#
  net_sock_init@Base 0.4.14
  net_sockopt_blocking_set@Base 0.4.14
  net_sockopt_reuse_set@Base 0.4.14
- ntp2unix@Base 0.4.14
- ntp_compact2us@Base 0.4.14
- ntp_compact@Base 0.4.14
- ntp_time_get@Base 0.4.14
- odict_alloc@Base 0.4.14
- odict_count@Base 0.4.14
- odict_debug@Base 0.4.14
- odict_entry_add@Base 0.4.14
- odict_entry_debug@Base 0.4.14
- odict_entry_del@Base 0.4.14
- odict_get_boolean@Base 0.6.0
- odict_get_number@Base 0.6.0
- odict_get_type@Base 0.6.0
- odict_lookup@Base 0.4.14
- odict_string@Base 0.6.0
- odict_type_iscontainer@Base 0.4.14
- odict_type_isreal@Base 0.4.14
- odict_type_name@Base 0.4.14
  openssl_close@Base 0.4.14
  openssl_init@Base 0.4.14
+ pcp_force_refresh@Base 0.6.0
+ pcp_ipaddr_decode@Base 0.6.0
+ pcp_ipaddr_encode@Base 0.6.0
+ pcp_msg_decode@Base 0.6.0
+ pcp_msg_option@Base 0.6.0
+ pcp_msg_option_apply@Base 0.6.0
+ pcp_msg_payload@Base 0.6.0
+ pcp_msg_print@Base 0.6.0
+ pcp_msg_printhdr@Base 0.6.0
+ pcp_msg_req_encode@Base 0.6.0
+ pcp_msg_req_vencode@Base 0.6.0
+ pcp_opcode_name@Base 0.6.0
+ pcp_option_decode@Base 0.6.0
+ pcp_option_encode@Base 0.6.0
+ pcp_option_print@Base 0.6.0
+ pcp_payload_encode@Base 0.6.0
+ pcp_proto_name@Base 0.6.0
+ pcp_reply@Base 0.6.0
+ pcp_request@Base 0.6.0
+ pcp_result_name@Base 0.6.0
  pl_casecmp@Base 0.4.14
  pl_cmp@Base 0.4.14
  pl_dup@Base 0.4.14
@@ -446,93 +216,6 @@ libre.so.0 libre0 #MINVER#
  re_vprintf@Base 0.4.14
  re_vsdprintf@Base 0.4.14
  re_vsnprintf@Base 0.4.14
- rtcp_debug@Base 0.4.14
- rtcp_decode@Base 0.4.14
- rtcp_enable@Base 0.4.14
- rtcp_enable_mux@Base 0.4.14
- rtcp_encode@Base 0.4.14
- rtcp_handler@Base 0.4.14
- rtcp_hdr_decode@Base 0.4.14
- rtcp_hdr_encode@Base 0.4.14
- rtcp_msg_print@Base 0.4.14
- rtcp_psfb_decode@Base 0.4.14
- rtcp_psfb_sli_encode@Base 0.4.14
- rtcp_rr_alloc@Base 0.4.14
- rtcp_rr_decode@Base 0.4.14
- rtcp_rr_encode@Base 0.4.14
- rtcp_rtpfb_decode@Base 0.4.14
- rtcp_rtpfb_gnack_encode@Base 0.4.14
- rtcp_sdes_decode@Base 0.4.14
- rtcp_sdes_encode@Base 0.4.14
- rtcp_sdes_name@Base 0.4.14
- rtcp_send@Base 0.4.14
- rtcp_send_app@Base 0.4.14
- rtcp_send_fir@Base 0.4.14
- rtcp_send_nack@Base 0.4.14
- rtcp_send_pli@Base 0.4.14
- rtcp_sess_alloc@Base 0.4.14
- rtcp_sess_rx_rtp@Base 0.4.14
- rtcp_sess_tx_rtp@Base 0.4.14
- rtcp_set_srate@Base 0.4.14
- rtcp_set_srate_rx@Base 0.4.14
- rtcp_set_srate_tx@Base 0.4.14
- rtcp_sock@Base 0.4.14
- rtcp_start@Base 0.4.14
- rtcp_stats@Base 0.4.14
- rtcp_type_name@Base 0.4.14
- rtcp_vencode@Base 0.4.14
- rtmp_accept@Base 0.6.0
- rtmp_amf_command@Base 0.6.0
- rtmp_amf_data@Base 0.6.0
- rtmp_amf_decode@Base 0.6.0
- rtmp_amf_encode_boolean@Base 0.6.0
- rtmp_amf_encode_null@Base 0.6.0
- rtmp_amf_encode_number@Base 0.6.0
- rtmp_amf_encode_string@Base 0.6.0
- rtmp_amf_reply@Base 0.6.0
- rtmp_amf_request@Base 0.6.0
- rtmp_amf_vencode_object@Base 0.6.0
- rtmp_chunker@Base 0.6.0
- rtmp_command_header_encode@Base 0.6.0
- rtmp_conn_assign_chunkid@Base 0.6.0
- rtmp_conn_assign_tid@Base 0.6.0
- rtmp_conn_debug@Base 0.6.0
- rtmp_conn_send_msg@Base 0.6.0
- rtmp_conn_stream@Base 0.6.0
- rtmp_conn_tcpconn@Base 0.6.0
- rtmp_connect@Base 0.6.0
- rtmp_control@Base 0.6.0
- rtmp_ctrans_response@Base 0.6.0
- rtmp_dechunker_alloc@Base 0.6.0
- rtmp_dechunker_debug@Base 0.6.0
- rtmp_dechunker_receive@Base 0.6.0
- rtmp_dechunker_set_chunksize@Base 0.6.0
- rtmp_event_name@Base 0.6.0
- rtmp_header_decode@Base 0.6.0
- rtmp_header_encode@Base 0.6.0
- rtmp_header_print@Base 0.6.0
- rtmp_meta@Base 0.6.0-2~
- rtmp_packet_type_name@Base 0.6.0
- rtmp_play@Base 0.6.0
- rtmp_publish@Base 0.6.0
- rtmp_send_amf_command@Base 0.6.0
- rtmp_send_audio@Base 0.6.0
- rtmp_send_video@Base 0.6.0
- rtmp_stream_alloc@Base 0.6.0
- rtmp_stream_create@Base 0.6.0
- rtmp_stream_find@Base 0.6.0
- rtp_alloc@Base 0.4.14
- rtp_debug@Base 0.4.14
- rtp_decode@Base 0.4.14
- rtp_encode@Base 0.4.14
- rtp_hdr_decode@Base 0.4.14
- rtp_hdr_encode@Base 0.4.14
- rtp_listen@Base 0.4.14
- rtp_local@Base 0.4.14
- rtp_rtcp_sess@Base 0.4.14
- rtp_send@Base 0.4.14
- rtp_sess_ssrc@Base 0.4.14
- rtp_sock@Base 0.4.14
  sa_af@Base 0.4.14
  sa_cmp@Base 0.4.14
  sa_cpy@Base 0.4.14
@@ -554,218 +237,6 @@ libre.so.0 libre0 #MINVER#
  sa_set_port@Base 0.4.14
  sa_set_sa@Base 0.4.14
  sa_set_str@Base 0.4.14
- sdp_attr_add@Base 0.4.14
- sdp_attr_addv@Base 0.4.14
- sdp_attr_apply@Base 0.4.14
- sdp_attr_debug@Base 0.4.14
- sdp_attr_del@Base 0.4.14
- sdp_attr_fmtp@Base 0.4.14
- sdp_attr_maxptime@Base 0.4.14
- sdp_attr_print@Base 0.4.14
- sdp_attr_ptime@Base 0.4.14
- sdp_attr_rtcp@Base 0.4.14
- sdp_attr_rtpmap@Base 0.4.14
- sdp_bandwidth_name@Base 0.4.14
- sdp_decode@Base 0.4.14
- sdp_dir_name@Base 0.4.14
- sdp_encode@Base 0.4.14
- sdp_extmap_decode@Base 0.4.14
- sdp_format_add@Base 0.4.14
- sdp_format_cmp@Base 0.4.14
- sdp_format_debug@Base 0.4.14
- sdp_format_find@Base 0.4.14
- sdp_format_radd@Base 0.4.14
- sdp_format_set_params@Base 0.4.14
- sdp_media_add@Base 0.4.14
- sdp_media_align_formats@Base 0.4.14
- sdp_media_audio@Base 0.4.14
- sdp_media_debug@Base 0.4.14
- sdp_media_del_lattr@Base 0.4.14
- sdp_media_dir@Base 0.4.14
- sdp_media_find@Base 0.4.14
- sdp_media_format@Base 0.4.14
- sdp_media_format_apply@Base 0.4.14
- sdp_media_format_lst@Base 0.4.14
- sdp_media_laddr@Base 0.4.14
- sdp_media_ldir@Base 0.4.14
- sdp_media_lformat@Base 0.4.14
- sdp_media_name@Base 0.4.14
- sdp_media_proto@Base 0.4.14
- sdp_media_proto_cmp@Base 0.4.14
- sdp_media_radd@Base 0.4.14
- sdp_media_raddr@Base 0.4.14
- sdp_media_raddr_rtcp@Base 0.4.14
- sdp_media_rattr@Base 0.4.14
- sdp_media_rattr_apply@Base 0.4.14
- sdp_media_rbandwidth@Base 0.4.14
- sdp_media_rdir@Base 0.4.14
- sdp_media_rformat@Base 0.4.14
- sdp_media_rport@Base 0.4.14
- sdp_media_rreset@Base 0.4.14
- sdp_media_session_rattr@Base 0.4.14
- sdp_media_set_alt_protos@Base 0.4.14
- sdp_media_set_disabled@Base 0.4.14
- sdp_media_set_encode_handler@Base 0.4.14
- sdp_media_set_fmt_ignore@Base 0.4.14
- sdp_media_set_laddr@Base 0.4.14
- sdp_media_set_laddr_rtcp@Base 0.4.14
- sdp_media_set_lattr@Base 0.4.14
- sdp_media_set_lbandwidth@Base 0.4.14
- sdp_media_set_ldir@Base 0.4.14
- sdp_media_set_lport@Base 0.4.14
- sdp_media_set_lport_rtcp@Base 0.4.14
- sdp_media_text@Base 0.4.14
- sdp_media_video@Base 0.4.14
- sdp_proto_rtpavp@Base 0.4.14
- sdp_proto_rtpsavp@Base 0.4.14
- sdp_session_alloc@Base 0.4.14
- sdp_session_debug@Base 0.4.14
- sdp_session_del_lattr@Base 0.4.14
- sdp_session_lbandwidth@Base 0.4.14
- sdp_session_medial@Base 0.4.14
- sdp_session_rattr@Base 0.4.14
- sdp_session_rattr_apply@Base 0.4.14
- sdp_session_rbandwidth@Base 0.4.14
- sdp_session_rreset@Base 0.4.14
- sdp_session_set_laddr@Base 0.4.14
- sdp_session_set_lattr@Base 0.4.14
- sdp_session_set_lbandwidth@Base 0.4.14
- sip_addr_decode@Base 0.4.14
- sip_alloc@Base 0.4.14
- sip_auth_alloc@Base 0.4.14
- sip_auth_authenticate@Base 0.4.14
- sip_auth_encode@Base 0.4.14
- sip_auth_reset@Base 0.4.14
- sip_close@Base 0.4.14
- sip_contact_print@Base 0.4.14
- sip_contact_set@Base 0.4.14
- sip_cseq_decode@Base 0.4.14
- sip_ctrans_cancel@Base 0.4.14
- sip_ctrans_debug@Base 0.4.14
- sip_ctrans_init@Base 0.4.14
- sip_ctrans_request@Base 0.4.14
- sip_debug@Base 0.4.14
- sip_dialog_accept@Base 0.4.14
- sip_dialog_alloc@Base 0.4.14
- sip_dialog_callid@Base 0.4.14
- sip_dialog_cmp@Base 0.4.14
- sip_dialog_cmp_half@Base 0.4.14
- sip_dialog_create@Base 0.4.14
- sip_dialog_encode@Base 0.4.14
- sip_dialog_established@Base 0.4.14
- sip_dialog_fork@Base 0.4.14
- sip_dialog_hash@Base 0.4.17
- sip_dialog_lseq@Base 0.4.14
- sip_dialog_route@Base 0.4.14
- sip_dialog_rseq_valid@Base 0.4.14
- sip_dialog_update@Base 0.4.14
- sip_dialog_uri@Base 0.4.14
- sip_drequestf@Base 0.4.14
- sip_keepalive_signal@Base 0.4.14
- sip_keepalive_start@Base 0.4.14
- sip_keepalive_tcp@Base 0.4.14
- sip_keepalive_udp@Base 0.4.14
- sip_keepalive_wait@Base 0.4.14
- sip_listen@Base 0.4.14
- sip_loopstate_reset@Base 0.4.14
- sip_msg_decode@Base 0.4.14
- sip_msg_dump@Base 0.4.14
- sip_msg_hdr@Base 0.4.14
- sip_msg_hdr_apply@Base 0.4.14
- sip_msg_hdr_count@Base 0.4.14
- sip_msg_hdr_has_value@Base 0.4.14
- sip_msg_tcpconn@Base 0.4.14
- sip_msg_xhdr@Base 0.4.14
- sip_msg_xhdr_apply@Base 0.4.14
- sip_msg_xhdr_count@Base 0.4.14
- sip_msg_xhdr_has_value@Base 0.4.14
- sip_reply@Base 0.4.14
- sip_reply_addr@Base 0.4.14
- sip_replyf@Base 0.4.14
- sip_request@Base 0.4.14
- sip_request_cancel@Base 0.4.14
- sip_request_close@Base 0.4.14
- sip_request_loops@Base 0.4.14
- sip_requestf@Base 0.4.14
- sip_send@Base 0.4.14
- sip_strans_alloc@Base 0.4.14
- sip_strans_debug@Base 0.4.14
- sip_strans_init@Base 0.4.14
- sip_strans_reply@Base 0.4.14
- sip_transp_add@Base 0.4.14
- sip_transp_debug@Base 0.4.14
- sip_transp_flush@Base 0.4.14
- sip_transp_init@Base 0.4.14
- sip_transp_isladdr@Base 0.4.14
- sip_transp_laddr@Base 0.4.14
- sip_transp_name@Base 0.4.14
- sip_transp_param@Base 0.4.14
- sip_transp_port@Base 0.4.14
- sip_transp_reliable@Base 0.4.14
- sip_transp_send@Base 0.4.14
- sip_transp_srvid@Base 0.4.14
- sip_transp_supported@Base 0.4.14
- sip_treply@Base 0.4.14
- sip_treplyf@Base 0.4.14
- sip_via_decode@Base 0.4.14
- sipevent_accept@Base 0.4.14
- sipevent_drefer@Base 0.4.14
- sipevent_dsubscribe@Base 0.4.14
- sipevent_event_decode@Base 0.4.14
- sipevent_fork@Base 0.4.14
- sipevent_listen@Base 0.4.14
- sipevent_notify@Base 0.4.14
- sipevent_notifyf@Base 0.4.14
- sipevent_reason_name@Base 0.4.14
- sipevent_refer@Base 0.4.14
- sipevent_subscribe@Base 0.4.14
- sipevent_substate_decode@Base 0.4.14
- sipevent_substate_name@Base 0.4.14
- sipnot_notify@Base 0.4.14
- sipnot_refresh@Base 0.4.14
- sipnot_reply@Base 0.4.14
- sipreg_laddr@Base 0.5.5
- sipreg_register@Base 0.4.14
- sipsess_accept@Base 0.4.14
- sipsess_ack@Base 0.4.14
- sipsess_ack_again@Base 0.4.14
- sipsess_alloc@Base 0.4.14
- sipsess_answer@Base 0.4.14
- sipsess_bye@Base 0.4.14
- sipsess_close_all@Base 0.4.14
- sipsess_connect@Base 0.4.14
- sipsess_dialog@Base 0.4.14
- sipsess_info@Base 0.4.14
- sipsess_listen@Base 0.4.14
- sipsess_modify@Base 0.4.14
- sipsess_progress@Base 0.4.14
- sipsess_reinvite@Base 0.4.14
- sipsess_reject@Base 0.4.14
- sipsess_reply_2xx@Base 0.4.14
- sipsess_reply_ack@Base 0.4.14
- sipsess_request_alloc@Base 0.4.14
- sipsess_set_close_headers@Base 0.4.14
- sipsess_terminate@Base 0.4.14
- sipsub_find@Base 0.4.14
- sipsub_reschedule@Base 0.4.14
- sipsub_terminate@Base 0.4.14
- source_calc_fraction_lost@Base 0.4.14
- source_calc_jitter@Base 0.4.14
- source_calc_lost@Base 0.4.14
- source_init_seq@Base 0.4.14
- source_update_seq@Base 0.4.14
- srtcp_decrypt@Base 0.4.14
- srtcp_encrypt@Base 0.4.14
- srtp_alloc@Base 0.4.14
- srtp_decrypt@Base 0.4.14
- srtp_derive@Base 0.4.14
- srtp_encrypt@Base 0.4.14
- srtp_get_index@Base 0.4.14
- srtp_iv_calc@Base 0.4.14
- srtp_iv_calc_gcm@Base 0.5.8
- srtp_replay_check@Base 0.4.14
- srtp_replay_init@Base 0.4.14
- srtp_suite_name@Base 0.4.14
  str_casecmp@Base 0.4.14
  str_cmp@Base 0.4.14
  str_dup@Base 0.4.14
@@ -773,71 +244,6 @@ libre.so.0 libre0 #MINVER#
  str_hex@Base 0.4.14
  str_len@Base 0.4.14
  str_ncpy@Base 0.4.14
- stream_get@Base 0.4.14
- stream_get_seq@Base 0.4.14
- stun_addr_decode@Base 0.4.14
- stun_addr_encode@Base 0.4.14
- stun_alloc@Base 0.4.14
- stun_attr_decode@Base 0.4.14
- stun_attr_dump@Base 0.4.14
- stun_attr_encode@Base 0.4.14
- stun_attr_name@Base 0.4.14
- stun_class_name@Base 0.4.14
- stun_conf@Base 0.4.14
- stun_ctrans_close@Base 0.4.14
- stun_ctrans_debug@Base 0.4.14
- stun_ctrans_recv@Base 0.4.14
- stun_ctrans_request@Base 0.4.14
- stun_debug@Base 0.4.14
- stun_ereply@Base 0.4.14
- stun_hdr_decode@Base 0.4.14
- stun_hdr_encode@Base 0.4.14
- stun_indication@Base 0.4.14
- stun_keepalive_alloc@Base 0.4.14
- stun_keepalive_enable@Base 0.4.14
- stun_method_name@Base 0.4.14
- stun_msg_attr@Base 0.4.14
- stun_msg_attr_apply@Base 0.4.14
- stun_msg_chk_fingerprint@Base 0.4.14
- stun_msg_chk_mi@Base 0.4.14
- stun_msg_class@Base 0.4.14
- stun_msg_decode@Base 0.4.14
- stun_msg_dump@Base 0.4.14
- stun_msg_encode@Base 0.4.14
- stun_msg_mcookie@Base 0.4.14
- stun_msg_method@Base 0.4.14
- stun_msg_tid@Base 0.4.14
- stun_msg_type@Base 0.4.14
- stun_msg_vencode@Base 0.4.14
- stun_proto_tcp@Base 0.4.14
- stun_proto_udp@Base 0.4.14
- stun_reason_300@Base 0.4.14
- stun_reason_400@Base 0.4.14
- stun_reason_401@Base 0.4.14
- stun_reason_403@Base 0.4.14
- stun_reason_420@Base 0.4.14
- stun_reason_437@Base 0.4.14
- stun_reason_438@Base 0.4.14
- stun_reason_440@Base 0.4.14
- stun_reason_441@Base 0.4.14
- stun_reason_442@Base 0.4.14
- stun_reason_443@Base 0.4.14
- stun_reason_486@Base 0.4.14
- stun_reason_500@Base 0.4.14
- stun_reason_508@Base 0.4.14
- stun_recv@Base 0.4.14
- stun_reply@Base 0.4.14
- stun_request@Base 0.4.14
- stun_send@Base 0.4.14
- stun_server_discover@Base 0.4.14
- stun_software@Base 0.4.14
- stun_transp_name@Base 0.4.14
- stun_usage_behavior@Base 0.4.14
- stun_usage_binding@Base 0.4.14
- stun_usage_relay@Base 0.4.14
- stuns_usage_behavior@Base 0.4.14
- stuns_usage_binding@Base 0.4.14
- stuns_usage_relay@Base 0.4.14
  sys_arch_get@Base 0.4.14
  sys_build_get@Base 0.4.14
  sys_coredump_set@Base 0.4.14
@@ -854,58 +260,6 @@ libre.so.0 libre0 #MINVER#
  sys_rel_get@Base 0.4.14
  sys_username@Base 0.4.14
  sys_usleep@Base 0.4.14
- tcp_accept@Base 0.4.14
- tcp_conn_alloc@Base 0.4.14
- tcp_conn_bind@Base 0.4.14
- tcp_conn_connect@Base 0.4.14
- tcp_conn_fd@Base 0.4.14
- tcp_conn_local_get@Base 0.4.14
- tcp_conn_peer_get@Base 0.4.14
- tcp_conn_rxsz_set@Base 0.4.14
- tcp_conn_txqsz@Base 0.4.14
- tcp_conn_txqsz_set@Base 0.4.14
- tcp_connect@Base 0.4.14
- tcp_listen@Base 0.4.14
- tcp_local_get@Base 0.4.14
- tcp_register_helper@Base 0.4.14
- tcp_reject@Base 0.4.14
- tcp_send@Base 0.4.14
- tcp_send_helper@Base 0.4.14
- tcp_set_handlers@Base 0.4.14
- tcp_set_send@Base 0.4.14
- tcp_sock_alloc@Base 0.4.14
- tcp_sock_bind@Base 0.4.14
- tcp_sock_listen@Base 0.4.14
- tcp_sock_local_get@Base 0.4.14
- telev_alloc@Base 0.4.14
- telev_code2digit@Base 0.4.14
- telev_digit2code@Base 0.4.14
- telev_poll@Base 0.4.14
- telev_recv@Base 0.4.14
- telev_rtpfmt@Base 0.4.14
- telev_send@Base 0.4.14
- telev_set_srate@Base 0.5.3
- tls_add_ca@Base 0.4.14
- tls_alloc@Base 0.4.14
- tls_cipher_name@Base 0.4.16
- tls_fingerprint@Base 0.4.14
- tls_flush_error@Base 0.5.0
-#MISSING: 0.5.7-1# tls_method_tcp@Base 0.5.0
-#MISSING: 0.5.7-1# tls_method_udp@Base 0.5.0
- tls_openssl_context@Base 0.5.3
- tls_peer_common_name@Base 0.4.14
- tls_peer_fingerprint@Base 0.4.14
- tls_peer_verify@Base 0.4.14
- tls_set_certificate@Base 0.4.14
- tls_set_certificate_der@Base 0.5.0
- tls_set_certificate_pem@Base 0.5.0
- tls_set_ciphers@Base 0.4.17
- tls_set_selfsigned@Base 0.4.14
- tls_set_servername@Base 0.4.17
- tls_set_srtp@Base 0.4.14
- tls_set_verify_client@Base 0.4.14
- tls_srtp_keyinfo@Base 0.4.14
- tls_start_tcp@Base 0.4.14
  tmr_cancel@Base 0.4.14
  tmr_debug@Base 0.4.14
  tmr_get_expire@Base 0.4.14
@@ -916,24 +270,9 @@ libre.so.0 libre0 #MINVER#
  tmr_start@Base 0.4.14
  tmr_status@Base 0.4.14
  tmrl_get@Base 0.4.14
- turnc_add_chan@Base 0.4.14
- turnc_add_perm@Base 0.4.14
- turnc_alloc@Base 0.4.14
- turnc_chan_find_numb@Base 0.4.14
- turnc_chan_find_peer@Base 0.4.14
- turnc_chan_hash_alloc@Base 0.4.14
- turnc_chan_hdr_decode@Base 0.4.14
- turnc_chan_hdr_encode@Base 0.4.14
- turnc_chan_numb@Base 0.4.14
- turnc_chan_peer@Base 0.4.14
- turnc_keygen@Base 0.4.14
- turnc_loopstate_reset@Base 0.4.14
- turnc_perm_hash_alloc@Base 0.4.14
- turnc_recv@Base 0.4.14
- turnc_request_loops@Base 0.4.14
- turnc_send@Base 0.4.14
  udp_connect@Base 0.4.14
  udp_error_handler_set@Base 0.4.14
+ udp_get_recv_pktinfo@Base 0.6.0-2vyatta1~
  udp_handler_set@Base 0.4.14
  udp_helper_find@Base 0.5.0
  udp_listen@Base 0.4.14
@@ -946,35 +285,12 @@ libre.so.0 libre0 #MINVER#
  udp_send@Base 0.4.14
  udp_send_anon@Base 0.4.14
  udp_send_helper@Base 0.4.14
+ udp_set_pktinfo@Base 0.6.0-2vyatta1~
  udp_setsockopt@Base 0.4.14
  udp_sock_fd@Base 0.4.14
  udp_sockbuf_set@Base 0.4.14
  udp_thread_attach@Base 0.4.14
  udp_thread_detach@Base 0.4.14
- unix2ntp@Base 0.4.14
- uri_cmp@Base 0.4.14
- uri_decode@Base 0.4.14
- uri_decode_hostport@Base 0.6.0
- uri_encode@Base 0.4.14
- uri_header_escape@Base 0.4.14
- uri_header_get@Base 0.4.14
- uri_header_unescape@Base 0.4.14
- uri_headers_apply@Base 0.4.14
- uri_param_escape@Base 0.4.14
- uri_param_get@Base 0.4.14
- uri_param_unescape@Base 0.4.14
- uri_params_apply@Base 0.4.14
- uri_password_escape@Base 0.4.14
- uri_password_unescape@Base 0.4.14
- uri_user_escape@Base 0.4.14
- uri_user_unescape@Base 0.4.14
  utf8_byteseq@Base 0.5.8
  utf8_decode@Base 0.4.14
  utf8_encode@Base 0.4.14
- websock_accept@Base 0.4.14
- websock_alloc@Base 0.4.14
- websock_close@Base 0.4.14
- websock_connect@Base 0.4.14
- websock_peer@Base 0.4.14
- websock_send@Base 0.4.14
- websock_shutdown@Base 0.4.14

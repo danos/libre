@@ -1,0 +1,39 @@
+From: George Wilkie <george.wilkie@intl.att.com>
+Date: Wed, 14 Aug 2019 14:22:54 +0100
+Subject: Remove conflicting PCP draft error code
+
+PCP error codes 14 through 23 inclusive are used by the
+Authentication Mechanism defined in RFC 7652.
+
+If draft-cheshire-pcp-unsupp-family is to be incorporated
+as a future RFC, it will have to use a different value
+for the PCP_UNSUPP_FAMILY error, as 14 is now in use.
+---
+ include/re_pcp.h | 1 -
+ src/pcp/pcp.c    | 1 -
+ 2 files changed, 2 deletions(-)
+
+diff --git a/include/re_pcp.h b/include/re_pcp.h
+index a98d5d4..da04d72 100644
+--- a/include/re_pcp.h
++++ b/include/re_pcp.h
+@@ -58,7 +58,6 @@ enum pcp_result {
+ 	PCP_CANNOT_PROVIDE_EXTERNAL = 11,
+ 	PCP_ADDRESS_MISMATCH        = 12,
+ 	PCP_EXCESSIVE_REMOTE_PEERS  = 13,
+-	PCP_UNSUPP_FAMILY           = 14  /*draft-cheshire-pcp-unsupp-family*/
+ };
+ 
+ enum pcp_option_code {
+diff --git a/src/pcp/pcp.c b/src/pcp/pcp.c
+index 28961fb..2ee87be 100644
+--- a/src/pcp/pcp.c
++++ b/src/pcp/pcp.c
+@@ -93,7 +93,6 @@ const char *pcp_result_name(enum pcp_result result)
+ 	case PCP_CANNOT_PROVIDE_EXTERNAL: return "CANNOT_PROVIDE_EXTERNAL";
+ 	case PCP_ADDRESS_MISMATCH:        return "ADDRESS_MISMATCH";
+ 	case PCP_EXCESSIVE_REMOTE_PEERS:  return "EXCESSIVE_REMOTE_PEERS";
+-	case PCP_UNSUPP_FAMILY:           return "UNSUPP_FAMILY";
+ 	default: return "?";
+ 	}
+ }

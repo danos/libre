@@ -1,0 +1,41 @@
+From: George Wilkie <george.wilkie@intl.att.com>
+Date: Thu, 15 Aug 2019 10:42:41 +0100
+Subject: Set UDP listen to any ipv6 address as ipv6 only
+
+A bind to a IPV6 address which is not the any address and
+is not a mapped ipv4 address is already set to ipv6 only.
+Ensure a bind to any address is also set to ipv6 only.
+There is code later on which already assumes this is the case:
+("Extra check for unspec addr").
+---
+ src/udp/udp.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/src/udp/udp.c b/src/udp/udp.c
+index 30eec56..f4b6466 100644
+--- a/src/udp/udp.c
++++ b/src/udp/udp.c
+@@ -344,6 +344,23 @@ int udp_listen(struct udp_sock **usp, const struct sa *local,
+ 			continue;
+ 		}
+ 
++#if defined (IPPROTO_IPV6) && defined (IPV6_V6ONLY)
++		if (AF_INET6 == r->ai_family) {
++			struct sa sa;
++
++			/* Set v6only before bind to any v6 address */
++			if (0 == sa_set_sa(&sa, r->ai_addr) && sa_is_any(&sa)) {
++				int on = 1;
++				if (0 != setsockopt(fd, IPPROTO_IPV6,
++						    IPV6_V6ONLY,
++						    &on, sizeof(on))) {
++					DEBUG_WARNING("listen: v6only: %m\n",
++						      errno);
++				}
++			}
++		}
++#endif
++
+ 		if (bind(fd, r->ai_addr, SIZ_CAST r->ai_addrlen) < 0) {
+ 			err = errno;
+ 			DEBUG_INFO("listen: bind(): %m (%J)\n", err, local);

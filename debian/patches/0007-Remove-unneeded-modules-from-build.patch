@@ -1,0 +1,50 @@
+From: George Wilkie <george.wilkie@intl.att.com>
+Date: Tue, 9 Jul 2019 16:38:13 +0100
+Subject: Remove unneeded modules from build
+
+---
+ Makefile | 28 +++++++++++++++-------------
+ 1 file changed, 15 insertions(+), 13 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 5184153..8f1010f 100644
+--- a/Makefile
++++ b/Makefile
+@@ -17,22 +17,24 @@ MK	:= mk/re.mk
+ include $(MK)
+ 
+ # List of modules
+-MODULES += sip sipevent sipreg sipsess
+-MODULES += uri http httpauth msg websock
+-MODULES += stun turn ice
+-MODULES += natbd
+-MODULES += rtp sdp jbuf telev
+-MODULES += dns
+-MODULES += md5 crc32 sha hmac base64
+-MODULES += udp sa net tcp tls
++#MODULES += sip sipevent sipreg sipsess
++#MODULES += uri http httpauth msg websock
++MODULES += msg
++#MODULES += stun turn ice
++#MODULES += natbd
++#MODULES += rtp sdp jbuf telev
++#MODULES += dns
++#MODULES += md5 crc32 sha hmac base64
++#MODULES += udp sa net tcp tls
++MODULES += udp sa net
+ MODULES += list mbuf hash
+ MODULES += fmt tmr main mem dbg sys lock mqueue
+ MODULES += mod conf
+-MODULES += bfcp
+-MODULES += aes srtp
+-MODULES += odict
+-MODULES += json
+-MODULES += rtmp
++#MODULES += bfcp
++#MODULES += aes srtp
++#MODULES += odict
++#MODULES += json
++#MODULES += rtmp
+ MODULES += pcp
+ 
+ INSTALL := install

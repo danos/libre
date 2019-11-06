@@ -1,3 +1,9 @@
+libre (0.6.0-2vyatta2) unstable; urgency=medium
+
+  * DANOS Import master
+
+ -- Vyatta Package Maintainers <DL-vyatta-help@att.com>  Mon, 04 Nov 2019 15:54:31 +0000
+
 libre (0.6.0-2) unstable; urgency=medium
 
   * Add patches cherry-picked upstream to fix rtmp issues.

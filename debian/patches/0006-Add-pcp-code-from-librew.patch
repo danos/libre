@@ -1,0 +1,1615 @@
+From: George Wilkie <george.wilkie@intl.att.com>
+Date: Mon, 8 Jul 2019 16:23:14 +0100
+Subject: Add pcp code from librew
+
+Part of a staging library to libre with experimental code
+https://github.com/alfredh/rew.git
+---
+ Makefile          |   1 +
+ include/re_pcp.h  | 200 +++++++++++++++++++++++++++++
+ src/pcp/README    |  13 ++
+ src/pcp/mod.mk    |  12 ++
+ src/pcp/msg.c     | 378 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/pcp/option.c  | 228 ++++++++++++++++++++++++++++++++
+ src/pcp/payload.c | 112 ++++++++++++++++
+ src/pcp/pcp.c     | 122 ++++++++++++++++++
+ src/pcp/pcp.h     |   9 ++
+ src/pcp/reply.c   |  93 ++++++++++++++
+ src/pcp/request.c | 346 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 11 files changed, 1514 insertions(+)
+ create mode 100644 include/re_pcp.h
+ create mode 100644 src/pcp/README
+ create mode 100644 src/pcp/mod.mk
+ create mode 100644 src/pcp/msg.c
+ create mode 100644 src/pcp/option.c
+ create mode 100644 src/pcp/payload.c
+ create mode 100644 src/pcp/pcp.c
+ create mode 100644 src/pcp/pcp.h
+ create mode 100644 src/pcp/reply.c
+ create mode 100644 src/pcp/request.c
+
+diff --git a/Makefile b/Makefile
+index 7ccb1c2..5184153 100644
+--- a/Makefile
++++ b/Makefile
+@@ -33,6 +33,7 @@ MODULES += aes srtp
+ MODULES += odict
+ MODULES += json
+ MODULES += rtmp
++MODULES += pcp
+ 
+ INSTALL := install
+ ifeq ($(DESTDIR),)
+diff --git a/include/re_pcp.h b/include/re_pcp.h
+new file mode 100644
+index 0000000..a98d5d4
+--- /dev/null
++++ b/include/re_pcp.h
+@@ -0,0 +1,200 @@
++/**
++ * @file re_pcp.h  PCP - Port Control Protocol (RFC 6887)
++ *
++ * Copyright (C) 2010 - 2014 Creytiv.com
++ */
++
++
++/*
++ * The following specifications are implemented:
++ *
++ *   RFC 6887
++ *   draft-ietf-pcp-description-option-02
++ *   draft-cheshire-pcp-unsupp-family
++ *
++ */
++
++
++/** PCP Version numbers */
++enum {
++	PCP_VERSION = 2,
++};
++
++/* PCP port numbers */
++enum {
++	PCP_PORT_CLI   = 5350,  /* for ANNOUNCE notifications */
++	PCP_PORT_SRV   = 5351,
++};
++
++/** PCP Protocol sizes */
++enum {
++	PCP_HDR_SZ   = 24,
++	PCP_NONCE_SZ = 12,
++	PCP_MAP_SZ   = 36,
++	PCP_PEER_SZ  = 56,
++
++	PCP_MIN_PACKET =   24,
++	PCP_MAX_PACKET = 1100
++};
++
++enum pcp_opcode {
++	PCP_ANNOUNCE = 0,
++	PCP_MAP      = 1,
++	PCP_PEER     = 2,
++};
++
++enum pcp_result {
++	PCP_SUCCESS                 =  0,
++	PCP_UNSUPP_VERSION          =  1,
++	PCP_NOT_AUTHORIZED          =  2,
++	PCP_MALFORMED_REQUEST       =  3,
++	PCP_UNSUPP_OPCODE           =  4,
++	PCP_UNSUPP_OPTION           =  5,
++	PCP_MALFORMED_OPTION        =  6,
++	PCP_NETWORK_FAILURE         =  7,
++	PCP_NO_RESOURCES            =  8,
++	PCP_UNSUPP_PROTOCOL         =  9,
++	PCP_USER_EX_QUOTA           = 10,
++	PCP_CANNOT_PROVIDE_EXTERNAL = 11,
++	PCP_ADDRESS_MISMATCH        = 12,
++	PCP_EXCESSIVE_REMOTE_PEERS  = 13,
++	PCP_UNSUPP_FAMILY           = 14  /*draft-cheshire-pcp-unsupp-family*/
++};
++
++enum pcp_option_code {
++	PCP_OPTION_THIRD_PARTY    =   1,
++	PCP_OPTION_PREFER_FAILURE =   2,
++	PCP_OPTION_FILTER         =   3,
++	PCP_OPTION_DESCRIPTION    = 128,  /* RFC 7220 */
++};
++
++/* forward declarations */
++struct udp_sock;
++
++/** Defines a PCP option */
++struct pcp_option {
++	struct le le;
++	enum pcp_option_code code;
++	union {
++		struct sa third_party;          /* Internal IP-address */
++		struct pcp_option_filter {
++			uint8_t prefix_length;
++			struct sa remote_peer;
++		} filter;
++		char *description;
++	} u;
++};
++
++/**
++ * Defines a complete and decoded PCP request/response.
++ *
++ * A PCP message consist of a header, and optional payload and options:
++ *
++ *     [      Header    ]
++ *     ( Opcode Payload )
++ *     (   PCP Options  )
++ *
++ */
++struct pcp_msg {
++
++	/** PCP Common Header */
++	struct pcp_hdr {
++		uint8_t version;        /**< PCP Protocol version 2        */
++		unsigned resp:1;        /**< R-bit; 0=Request, 1=Response  */
++		uint8_t opcode;         /**< A 7-bit opcode                */
++		uint32_t lifetime;      /**< Lifetime in [seconds]         */
++
++		/* request: */
++		struct sa cli_addr;     /**< Client's IP Address (SA_ADDR) */
++
++		/* response: */
++		enum pcp_result result; /**< Result code for this response */
++		uint32_t epoch;         /**< Server's Epoch Time [seconds] */
++	} hdr;
++
++	/** PCP Opcode-specific payload */
++	union pcp_payload {
++		struct pcp_map {
++			uint8_t nonce[PCP_NONCE_SZ]; /**< Mapping Nonce    */
++			uint8_t proto;               /**< IANA protocol    */
++			uint16_t int_port;           /**< Internal Port    */
++			struct sa ext_addr;          /**< External Address */
++		} map;
++		struct pcp_peer {
++			struct pcp_map map;          /**< Common with MAP  */
++			struct sa remote_addr;       /**< Remote address   */
++		} peer;
++	} pld;
++
++	/** List of PCP Options (struct pcp_option) */
++	struct list optionl;
++};
++
++/** PCP request configuration */
++struct pcp_conf {
++	uint32_t irt;  /**< Initial retransmission time [seconds]     */
++	uint32_t mrc;  /**< Maximum retransmission count              */
++	uint32_t mrt;  /**< Maximum retransmission time [seconds]     */
++	uint32_t mrd;  /**< Maximum retransmission duration [seconds] */
++};
++
++
++/* request */
++
++struct pcp_request;
++
++typedef void (pcp_resp_h)(int err, struct pcp_msg *msg, void *arg);
++
++int pcp_request(struct pcp_request **reqp, const struct pcp_conf *conf,
++		const struct sa *pcp_server, enum pcp_opcode opcode,
++		uint32_t lifetime, const void *payload,
++		pcp_resp_h *resph, void *arg, uint32_t optionc, ...);
++void pcp_force_refresh(struct pcp_request *req);
++
++
++/* reply */
++
++int pcp_reply(struct udp_sock *us, const struct sa *dst, struct mbuf *req,
++	      enum pcp_opcode opcode, enum pcp_result result,
++	      uint32_t lifetime, uint32_t epoch_time, const void *payload);
++
++
++/* msg */
++
++typedef bool (pcp_option_h)(const struct pcp_option *opt, void *arg);
++
++int pcp_msg_decode(struct pcp_msg **msgp, struct mbuf *mb);
++int pcp_msg_printhdr(struct re_printf *pf, const struct pcp_msg *msg);
++int pcp_msg_print(struct re_printf *pf, const struct pcp_msg *msg);
++struct pcp_option *pcp_msg_option(const struct pcp_msg *msg,
++				  enum pcp_option_code code);
++struct pcp_option *pcp_msg_option_apply(const struct pcp_msg *msg,
++					pcp_option_h *h, void *arg);
++const void *pcp_msg_payload(const struct pcp_msg *msg);
++
++
++/* option */
++
++int pcp_option_encode(struct mbuf *mb, enum pcp_option_code code,
++		      const void *v);
++int pcp_option_decode(struct pcp_option **optp, struct mbuf *mb);
++int pcp_option_print(struct re_printf *pf, const struct pcp_option *opt);
++
++
++/* encode */
++
++int pcp_msg_req_vencode(struct mbuf *mb, enum pcp_opcode opcode,
++			uint32_t lifetime, const struct sa *cli_addr,
++			const void *payload, uint32_t optionc, va_list ap);
++int pcp_msg_req_encode(struct mbuf *mb, enum pcp_opcode opcode,
++		       uint32_t lifetime, const struct sa *cli_addr,
++		       const void *payload, uint32_t optionc, ...);
++
++
++/* pcp */
++
++int pcp_ipaddr_encode(struct mbuf *mb, const struct sa *sa);
++int pcp_ipaddr_decode(struct mbuf *mb, struct sa *sa);
++const char *pcp_result_name(enum pcp_result result);
++const char *pcp_opcode_name(enum pcp_opcode opcode);
++const char *pcp_proto_name(int proto);
+diff --git a/src/pcp/README b/src/pcp/README
+new file mode 100644
+index 0000000..620a614
+--- /dev/null
++++ b/src/pcp/README
+@@ -0,0 +1,13 @@
++PCP README:
++----------
++
++Port Control Protocol (PCP) as of RFC 6887
++
++
++
++
++other PCP implementations:
++
++  https://github.com/libpcp/pcp
++
++
+diff --git a/src/pcp/mod.mk b/src/pcp/mod.mk
+new file mode 100644
+index 0000000..2a1dc95
+--- /dev/null
++++ b/src/pcp/mod.mk
+@@ -0,0 +1,12 @@
++#
++# mod.mk
++#
++# Copyright (C) 2010 - 2016 Creytiv.com
++#
++
++SRCS	+= pcp/msg.c
++SRCS	+= pcp/option.c
++SRCS	+= pcp/payload.c
++SRCS	+= pcp/pcp.c
++SRCS	+= pcp/reply.c
++SRCS	+= pcp/request.c
+diff --git a/src/pcp/msg.c b/src/pcp/msg.c
+new file mode 100644
+index 0000000..327f254
+--- /dev/null
++++ b/src/pcp/msg.c
+@@ -0,0 +1,378 @@
++/**
++ * @file pcp/msg.c  PCP messages
++ *
++ * Copyright (C) 2010 - 2016 Creytiv.com
++ */
++#include <re_types.h>
++#include <re_fmt.h>
++#include <re_mem.h>
++#include <re_mbuf.h>
++#include <re_list.h>
++#include <re_sa.h>
++#include <re_pcp.h>
++#include "pcp.h"
++
++
++static int pcp_map_decode(struct pcp_map *map, struct mbuf *mb)
++{
++	uint16_t port;
++	int err;
++
++	if (!map || !mb)
++		return EINVAL;
++
++	if (mbuf_get_left(mb) < PCP_MAP_SZ)
++		return EBADMSG;
++
++	(void)mbuf_read_mem(mb, map->nonce, sizeof(map->nonce));
++	map->proto = mbuf_read_u8(mb); mbuf_advance(mb, 3);
++	map->int_port = ntohs(mbuf_read_u16(mb));
++
++	port = ntohs(mbuf_read_u16(mb));
++	err = pcp_ipaddr_decode(mb, &map->ext_addr);
++	sa_set_port(&map->ext_addr, port);
++
++	return err;
++}
++
++
++static int pcp_peer_decode(struct pcp_peer *peer, struct mbuf *mb)
++{
++	uint16_t port;
++	int err = 0;
++
++	if (!peer || !mb)
++		return EINVAL;
++
++	if (mbuf_get_left(mb) < PCP_PEER_SZ)
++		return EBADMSG;
++
++	/* note: the MAP and PEER opcodes are quite similar */
++	err = pcp_map_decode(&peer->map, mb);
++	if (err)
++		return err;
++
++	port = ntohs(mbuf_read_u16(mb)); mbuf_advance(mb, 2);
++	err |= pcp_ipaddr_decode(mb, &peer->remote_addr);
++	sa_set_port(&peer->remote_addr, port);
++
++	return err;
++}
++
++
++static void destructor(void *arg)
++{
++	struct pcp_msg *msg = arg;
++
++	list_flush(&msg->optionl);
++}
++
++
++static int pcp_header_encode_request(struct mbuf *mb, enum pcp_opcode opcode,
++			      uint32_t req_lifetime, const struct sa *int_addr)
++{
++	int err = 0;
++
++	if (!mb || !int_addr)
++		return EINVAL;
++
++	err |= mbuf_write_u8(mb, PCP_VERSION);
++	err |= mbuf_write_u8(mb, opcode);
++	err |= mbuf_write_u16(mb, 0x0000);
++	err |= mbuf_write_u32(mb, htonl(req_lifetime));
++	err |= pcp_ipaddr_encode(mb, int_addr);
++
++	return err;
++}
++
++
++static int pcp_header_decode(struct pcp_hdr *hdr, struct mbuf *mb)
++{
++	uint8_t b;
++
++	if (!hdr || !mb)
++		return EINVAL;
++
++	if (mbuf_get_left(mb) < PCP_HDR_SZ)
++		return EBADMSG;
++
++	hdr->version = mbuf_read_u8(mb);
++
++	if (hdr->version != PCP_VERSION) {
++		(void)re_fprintf(stderr, "pcp: unknown version %u\n",
++				 hdr->version);
++		return EPROTO;
++	}
++
++	b            = mbuf_read_u8(mb);
++	hdr->resp    = b>>7;
++	hdr->opcode  = b & 0x7f;
++
++	(void)mbuf_read_u8(mb);
++	b = mbuf_read_u8(mb);
++
++	if (hdr->resp)
++		hdr->result = b;
++
++	hdr->lifetime = ntohl(mbuf_read_u32(mb));
++
++	if (hdr->resp) {
++		hdr->epoch = ntohl(mbuf_read_u32(mb));
++		mbuf_advance(mb, 12);
++	}
++	else { /* Request */
++		(void)pcp_ipaddr_decode(mb, &hdr->cli_addr);
++	}
++
++	return 0;
++}
++
++
++int pcp_msg_req_vencode(struct mbuf *mb, enum pcp_opcode opcode,
++			uint32_t lifetime, const struct sa *cli_addr,
++			const void *payload, uint32_t optionc, va_list ap)
++{
++	uint32_t i;
++	int err;
++
++	if (!mb || !cli_addr)
++		return EINVAL;
++
++	err = pcp_header_encode_request(mb, opcode, lifetime, cli_addr);
++	if (err)
++		return err;
++
++	if (payload) {
++		err = pcp_payload_encode(mb, opcode, payload);
++		if (err)
++			return err;
++	}
++
++	/* encode options */
++	for (i=0; i<optionc; i++) {
++
++		enum pcp_option_code code = va_arg(ap, int);
++		const void *v = va_arg(ap, const void *);
++
++		if (!v)
++			continue;
++
++		err |= pcp_option_encode(mb, code, v);
++	}
++
++	return err;
++}
++
++
++int pcp_msg_req_encode(struct mbuf *mb, enum pcp_opcode opcode,
++		       uint32_t lifetime, const struct sa *cli_addr,
++		       const void *payload, uint32_t optionc, ...)
++{
++	va_list ap;
++	int err;
++
++	va_start(ap, optionc);
++	err = pcp_msg_req_vencode(mb, opcode, lifetime, cli_addr,
++				  payload, optionc, ap);
++	va_end(ap);
++
++	return err;
++}
++
++
++int pcp_msg_decode(struct pcp_msg **msgp, struct mbuf *mb)
++{
++	struct pcp_msg *msg;
++	size_t len, pos;
++	int err;
++
++	if (!msgp || !mb)
++		return EINVAL;
++
++	len = mbuf_get_left(mb);
++	if (len < PCP_MIN_PACKET || len > PCP_MAX_PACKET || len&3)
++		return EBADMSG;
++
++	msg = mem_zalloc(sizeof(*msg), destructor);
++	if (!msg)
++		return ENOMEM;
++
++	pos = mb->pos;
++	err = pcp_header_decode(&msg->hdr, mb);
++	if (err)
++		goto out;
++
++	switch (msg->hdr.opcode) {
++
++	case PCP_MAP:
++		err = pcp_map_decode(&msg->pld.map, mb);
++		break;
++
++	case PCP_PEER:
++		err = pcp_peer_decode(&msg->pld.peer, mb);
++		break;
++
++	default:
++		break;
++	}
++	if (err)
++		goto out;
++
++	/* Decode PCP Options */
++	while (mbuf_get_left(mb) >= 4) {
++
++		struct pcp_option *opt;
++
++		err = pcp_option_decode(&opt, mb);
++		if (err)
++			goto out;
++
++		list_append(&msg->optionl, &opt->le, opt);
++	}
++
++ out:
++	if (err) {
++		mb->pos = pos;
++		mem_deref(msg);
++	}
++	else
++		*msgp = msg;
++
++	return err;
++}
++
++
++struct pcp_option *pcp_msg_option(const struct pcp_msg *msg,
++				  enum pcp_option_code code)
++{
++	struct le *le = msg ? list_head(&msg->optionl) : NULL;
++
++	while (le) {
++		struct pcp_option *opt = le->data;
++
++		le = le->next;
++
++		if (opt->code == code)
++			return opt;
++	}
++
++	return NULL;
++}
++
++
++struct pcp_option *pcp_msg_option_apply(const struct pcp_msg *msg,
++					pcp_option_h *h, void *arg)
++{
++	struct le *le = msg ? list_head(&msg->optionl) : NULL;
++
++	while (le) {
++		struct pcp_option *opt = le->data;
++
++		le = le->next;
++
++		if (h && h(opt, arg))
++			return opt;
++	}
++
++	return NULL;
++}
++
++
++static bool option_print(const struct pcp_option *opt, void *arg)
++{
++	return 0 != pcp_option_print(arg, opt);
++}
++
++
++int pcp_msg_printhdr(struct re_printf *pf, const struct pcp_msg *msg)
++{
++	int err;
++
++	if (!msg)
++		return 0;
++
++	err = re_hprintf(pf, "%s %s %usec",
++			 msg->hdr.resp ? "Response" : "Request",
++			 pcp_opcode_name(msg->hdr.opcode),
++			 msg->hdr.lifetime);
++
++	if (msg->hdr.resp) {
++		err |= re_hprintf(pf, " result=%s, epoch_time=%u sec",
++				  pcp_result_name(msg->hdr.result),
++				  msg->hdr.epoch);
++	}
++	else {
++		err |= re_hprintf(pf, " client_addr=%j", &msg->hdr.cli_addr);
++	}
++
++	return err;
++}
++
++
++static int pcp_map_print(struct re_printf *pf, const struct pcp_map *map)
++{
++	if (!map)
++		return 0;
++
++	return re_hprintf(pf,
++			  " nonce    = %w\n protocol = %s\n"
++			  " int_port = %u\n ext_addr = %J\n",
++			  map->nonce, sizeof(map->nonce),
++			  pcp_proto_name(map->proto),
++			  map->int_port,
++			  &map->ext_addr);
++}
++
++
++int pcp_msg_print(struct re_printf *pf, const struct pcp_msg *msg)
++{
++	int err;
++
++	if (!msg)
++		return 0;
++
++	err  = pcp_msg_printhdr(pf, msg);
++	err |= re_hprintf(pf, "\n");
++
++	switch (msg->hdr.opcode) {
++
++	case PCP_MAP:
++		err |= pcp_map_print(pf, &msg->pld.map);
++		break;
++
++	case PCP_PEER:
++		err |= pcp_map_print(pf, &msg->pld.peer.map);
++		err |= re_hprintf(pf, " remote_peer = %J\n",
++				  &msg->pld.peer.remote_addr);
++		break;
++	}
++
++	if (err)
++		return err;
++
++	if (pcp_msg_option_apply(msg, option_print, pf))
++		return ENOMEM;
++
++	return 0;
++}
++
++
++/**
++ * Get the payload from a PCP message
++ *
++ * @param msg PCP message
++ *
++ * @return either "struct pcp_map" or "struct pcp_peer"
++ */
++const void *pcp_msg_payload(const struct pcp_msg *msg)
++{
++	if (!msg)
++		return NULL;
++
++	switch (msg->hdr.opcode) {
++
++	case PCP_MAP:  return &msg->pld.map;
++	case PCP_PEER: return &msg->pld.peer;
++	default:       return NULL;
++	}
++}
+diff --git a/src/pcp/option.c b/src/pcp/option.c
+new file mode 100644
+index 0000000..5ca9e0b
+--- /dev/null
++++ b/src/pcp/option.c
+@@ -0,0 +1,228 @@
++/**
++ * @file option.c  PCP options
++ *
++ * Copyright (C) 2010 - 2016 Creytiv.com
++ */
++#include <re_types.h>
++#include <re_fmt.h>
++#include <re_mem.h>
++#include <re_mbuf.h>
++#include <re_list.h>
++#include <re_sa.h>
++#include <re_pcp.h>
++#include "pcp.h"
++
++
++static void destructor(void *arg)
++{
++	struct pcp_option *opt = arg;
++
++	list_unlink(&opt->le);
++
++	switch (opt->code) {
++
++	case PCP_OPTION_DESCRIPTION:
++		mem_deref(opt->u.description);
++		break;
++
++	default:
++		break;
++	}
++}
++
++
++int pcp_option_encode(struct mbuf *mb, enum pcp_option_code code,
++		      const void *v)
++{
++	const struct sa *sa = v;
++	const struct pcp_option_filter *filt = v;
++	size_t start, len;
++	int err = 0;
++
++	if (!mb)
++		return EINVAL;
++
++	mb->pos += 4;
++	start = mb->pos;
++
++	switch (code) {
++
++	case PCP_OPTION_THIRD_PARTY:
++		if (!sa)
++			return EINVAL;
++		err |= pcp_ipaddr_encode(mb, sa);
++		break;
++
++	case PCP_OPTION_PREFER_FAILURE:
++		/* no payload */
++		break;
++
++	case PCP_OPTION_FILTER:
++		if (!filt)
++			return EINVAL;
++		err |= mbuf_write_u8(mb, 0x00);
++		err |= mbuf_write_u8(mb, filt->prefix_length);
++		err |= mbuf_write_u16(mb, htons(sa_port(&filt->remote_peer)));
++		err |= pcp_ipaddr_encode(mb, &filt->remote_peer);
++		break;
++
++	case PCP_OPTION_DESCRIPTION:
++		if (!v)
++			return EINVAL;
++		err |= mbuf_write_str(mb, v);
++		break;
++
++	default:
++		(void)re_fprintf(stderr,
++				 "pcp: unsupported option %d\n", code);
++		return EINVAL;
++	}
++
++	/* header */
++	len = mb->pos - start;
++
++	mb->pos = start - 4;
++	err |= mbuf_write_u8(mb, code);
++	err |= mbuf_write_u8(mb, 0x00);
++	err |= mbuf_write_u16(mb, htons(len));
++	mb->pos += len;
++
++	/* padding */
++	while ((mb->pos - start) & 0x03)
++		err |= mbuf_write_u8(mb, 0x00);
++
++	return err;
++}
++
++
++int pcp_option_decode(struct pcp_option **optp, struct mbuf *mb)
++{
++	struct pcp_option *opt;
++	size_t start, len;
++	uint16_t port;
++	int err = 0;
++
++	if (!optp || !mb)
++		return EINVAL;
++
++	if (mbuf_get_left(mb) < 4)
++		return EBADMSG;
++
++	opt = mem_zalloc(sizeof(*opt), destructor);
++	if (!opt)
++		return ENOMEM;
++
++	opt->code = mbuf_read_u8(mb);
++	(void)mbuf_read_u8(mb);
++	len = ntohs(mbuf_read_u16(mb));
++
++	if (mbuf_get_left(mb) < len)
++		goto badmsg;
++
++	start = mb->pos;
++
++	switch (opt->code) {
++
++	case PCP_OPTION_THIRD_PARTY:
++		if (len < 16)
++			goto badmsg;
++		err = pcp_ipaddr_decode(mb, &opt->u.third_party);
++		break;
++
++	case PCP_OPTION_PREFER_FAILURE:
++		/* no payload */
++		break;
++
++	case PCP_OPTION_FILTER:
++		if (len < 20)
++			goto badmsg;
++		(void)mbuf_read_u8(mb);
++		opt->u.filter.prefix_length = mbuf_read_u8(mb);
++		port = ntohs(mbuf_read_u16(mb));
++		err = pcp_ipaddr_decode(mb, &opt->u.filter.remote_peer);
++		sa_set_port(&opt->u.filter.remote_peer, port);
++		break;
++
++	case PCP_OPTION_DESCRIPTION:
++		err = mbuf_strdup(mb, &opt->u.description, len);
++		break;
++
++	default:
++		mb->pos += len;
++
++		(void)re_printf("pcp: ignore option code %d (len=%zu)\n",
++				opt->code, len);
++		break;
++	}
++
++	if (err)
++		goto error;
++
++	/* padding */
++	while (((mb->pos - start) & 0x03) && mbuf_get_left(mb))
++		++mb->pos;
++
++	*optp = opt;
++
++	return 0;
++
++ badmsg:
++	err = EBADMSG;
++ error:
++	mem_deref(opt);
++
++	return err;
++}
++
++
++static const char *pcp_option_name(enum pcp_option_code code)
++{
++	switch (code) {
++
++	case PCP_OPTION_THIRD_PARTY:    return "THIRD_PARTY";
++	case PCP_OPTION_PREFER_FAILURE: return "PREFER_FAILURE";
++	case PCP_OPTION_FILTER:         return "FILTER";
++	case PCP_OPTION_DESCRIPTION:    return "DESCRIPTION";
++	default: return "?";
++	}
++}
++
++
++int pcp_option_print(struct re_printf *pf, const struct pcp_option *opt)
++{
++	int err;
++
++	if (!opt)
++		return 0;
++
++	err = re_hprintf(pf, " %-25s", pcp_option_name(opt->code));
++
++	switch (opt->code) {
++
++	case PCP_OPTION_THIRD_PARTY:
++		err |= re_hprintf(pf, "address=%j",
++				  &opt->u.third_party);
++		break;
++
++	case PCP_OPTION_PREFER_FAILURE:
++		break;
++
++	case PCP_OPTION_FILTER:
++		err |= re_hprintf(pf, "prefix_length=%u, remote_peer=%J",
++				  opt->u.filter.prefix_length,
++				  &opt->u.filter.remote_peer);
++		break;
++
++	case PCP_OPTION_DESCRIPTION:
++		err |= re_hprintf(pf, "'%s'", opt->u.description);
++		break;
++
++	default:
++		err |= re_hprintf(pf, "???");
++		break;
++	}
++
++	err |= re_hprintf(pf, "\n");
++
++	return err;
++}
+diff --git a/src/pcp/payload.c b/src/pcp/payload.c
+new file mode 100644
+index 0000000..c9d6033
+--- /dev/null
++++ b/src/pcp/payload.c
+@@ -0,0 +1,112 @@
++/**
++ * @file payload.c  PCP payload encoding and decoding
++ *
++ * Copyright (C) 2010 Creytiv.com
++ */
++#include <re_types.h>
++#include <re_fmt.h>
++#include <re_mbuf.h>
++#include <re_sa.h>
++#include <re_list.h>
++#include <re_pcp.h>
++#include "pcp.h"
++
++
++static int pcp_write_port(struct mbuf *mb, const struct sa *sa)
++{
++	uint16_t port_be;
++
++	if (!mb || !sa)
++		return EINVAL;
++
++	switch (sa->u.sa.sa_family) {
++
++	case AF_INET:
++		port_be = sa->u.in.sin_port;
++		break;
++
++#ifdef HAVE_INET6
++	case AF_INET6:
++		port_be = sa->u.in6.sin6_port;
++		break;
++#endif
++
++	default:
++		return EAFNOSUPPORT;
++	}
++
++	return mbuf_write_u16(mb, port_be);
++}
++
++
++static int pcp_map_encode(struct mbuf *mb, const struct pcp_map *map)
++{
++	int err = 0;
++
++	if (!mb || !map)
++		return EINVAL;
++
++	err |= mbuf_write_mem(mb, map->nonce, sizeof(map->nonce));
++	err |= mbuf_write_u8(mb, map->proto);
++	err |= mbuf_fill(mb, 0x00, 3);
++	err |= mbuf_write_u16(mb, htons(map->int_port));
++	err |= pcp_write_port(mb, &map->ext_addr);
++	err |= pcp_ipaddr_encode(mb, &map->ext_addr);
++
++	return err;
++}
++
++
++static int pcp_peer_encode(struct mbuf *mb, const struct pcp_peer *peer)
++{
++	int err;
++
++	if (!mb || !peer)
++		return EINVAL;
++
++	/* Protocol MUST NOT be zero.
++	 * Internal port MUST NOT be zero.
++	 */
++	if (!peer->map.proto || !peer->map.int_port)
++		return EPROTO;
++
++	/* note: the MAP and PEER opcodes are quite similar */
++	err = pcp_map_encode(mb, &peer->map);
++	if (err)
++		return err;
++
++	err  = pcp_write_port(mb, &peer->remote_addr);
++	err |= mbuf_write_u16(mb, 0x0000);
++	err |= pcp_ipaddr_encode(mb, &peer->remote_addr);
++
++	return err;
++}
++
++
++int pcp_payload_encode(struct mbuf *mb, enum pcp_opcode opcode,
++		       const union pcp_payload *pld)
++{
++	int err;
++
++	if (!mb || !pld)
++		return EINVAL;
++
++	switch (opcode) {
++
++	case PCP_MAP:
++		err = pcp_map_encode(mb, &pld->map);
++		break;
++
++	case PCP_PEER:
++		err = pcp_peer_encode(mb, &pld->peer);
++		break;
++
++	default:
++		re_fprintf(stderr, "pcp: dont know how to encode payload"
++			   " for opcode %d\n", opcode);
++		err = EPROTO;
++		break;
++	}
++
++	return err;
++}
+diff --git a/src/pcp/pcp.c b/src/pcp/pcp.c
+new file mode 100644
+index 0000000..28961fb
+--- /dev/null
++++ b/src/pcp/pcp.c
+@@ -0,0 +1,122 @@
++/**
++ * @file pcp/pcp.c  PCP protocol details
++ *
++ * Copyright (C) 2010 - 2016 Creytiv.com
++ */
++#include <string.h>
++#include <re_types.h>
++#include <re_mbuf.h>
++#include <re_sa.h>
++#include <re_list.h>
++#include <re_pcp.h>
++#include "pcp.h"
++
++
++static const uint8_t pattern[12] = {0,0,0,0,0,0,0,0,0,0,0xff,0xff};
++
++
++int pcp_ipaddr_encode(struct mbuf *mb, const struct sa *sa)
++{
++	int err = 0;
++
++	if (!mb || !sa)
++		return EINVAL;
++
++	switch (sa_af(sa)) {
++
++	case AF_INET:
++		err |= mbuf_write_mem(mb, pattern, sizeof(pattern));
++		err |= mbuf_write_mem(mb, (void *)&sa->u.in.sin_addr.s_addr,
++				      4);
++		break;
++
++#ifdef HAVE_INET6
++	case AF_INET6:
++		err |= mbuf_write_mem(mb, sa->u.in6.sin6_addr.s6_addr, 16);
++		break;
++#endif
++
++	default:
++		err = EAFNOSUPPORT;
++		break;
++	}
++
++	return err;
++}
++
++
++int pcp_ipaddr_decode(struct mbuf *mb, struct sa *sa)
++{
++	uint8_t *p;
++
++	if (!mb || !sa)
++		return EINVAL;
++
++	if (mbuf_get_left(mb) < 16)
++		return EBADMSG;
++
++	p = mbuf_buf(mb);
++
++	if (0 == memcmp(p, pattern, sizeof(pattern))) {
++
++		sa_init(sa, AF_INET);
++		memcpy(&sa->u.in.sin_addr, p + 12, 4);
++	}
++#ifdef HAVE_INET6
++	else {
++		sa_init(sa, AF_INET6);
++		memcpy(sa->u.in6.sin6_addr.s6_addr, p, 16);
++	}
++#endif
++
++	mb->pos += 16;
++
++	return 0;
++}
++
++
++const char *pcp_result_name(enum pcp_result result)
++{
++	switch (result) {
++
++	case PCP_SUCCESS:                 return "SUCCESS";
++	case PCP_UNSUPP_VERSION:          return "UNSUPP_VERSION";
++	case PCP_NOT_AUTHORIZED:          return "NOT_AUTHORIZED";
++	case PCP_MALFORMED_REQUEST:       return "MALFORMED_REQUEST";
++	case PCP_UNSUPP_OPCODE:           return "UNSUPP_OPCODE";
++	case PCP_UNSUPP_OPTION:           return "UNSUPP_OPTION";
++	case PCP_MALFORMED_OPTION:        return "MALFORMED_OPTION";
++	case PCP_NETWORK_FAILURE:         return "NETWORK_FAILURE";
++	case PCP_NO_RESOURCES:            return "NO_RESOURCES";
++	case PCP_UNSUPP_PROTOCOL:         return "UNSUPP_PROTOCOL";
++	case PCP_USER_EX_QUOTA:           return "USER_EX_QUOTA";
++	case PCP_CANNOT_PROVIDE_EXTERNAL: return "CANNOT_PROVIDE_EXTERNAL";
++	case PCP_ADDRESS_MISMATCH:        return "ADDRESS_MISMATCH";
++	case PCP_EXCESSIVE_REMOTE_PEERS:  return "EXCESSIVE_REMOTE_PEERS";
++	case PCP_UNSUPP_FAMILY:           return "UNSUPP_FAMILY";
++	default: return "?";
++	}
++}
++
++
++const char *pcp_opcode_name(enum pcp_opcode opcode)
++{
++	switch (opcode) {
++
++	case PCP_ANNOUNCE: return "ANNOUNCE";
++	case PCP_MAP:      return "MAP";
++	case PCP_PEER:     return "PEER";
++	default:           return "?";
++	}
++}
++
++
++const char *pcp_proto_name(int proto)
++{
++	switch (proto) {
++
++	case IPPROTO_UDP: return "UDP";
++	case IPPROTO_TCP: return "TCP";
++	default: return "?";
++	}
++}
+diff --git a/src/pcp/pcp.h b/src/pcp/pcp.h
+new file mode 100644
+index 0000000..5c85ecc
+--- /dev/null
++++ b/src/pcp/pcp.h
+@@ -0,0 +1,9 @@
++/**
++ * @file pcp/pcp.h  PCP protocol -- Internal interface
++ *
++ * Copyright (C) 2010 - 2016 Creytiv.com
++ */
++
++
++int pcp_payload_encode(struct mbuf *mb, enum pcp_opcode opcode,
++		       const union pcp_payload *pld);
+diff --git a/src/pcp/reply.c b/src/pcp/reply.c
+new file mode 100644
+index 0000000..264dcbb
+--- /dev/null
++++ b/src/pcp/reply.c
+@@ -0,0 +1,93 @@
++/**
++ * @file pcp/reply.c  PCP reply
++ *
++ * Copyright (C) 2010 Creytiv.com
++ */
++#include <re_types.h>
++#include <re_fmt.h>
++#include <re_mem.h>
++#include <re_mbuf.h>
++#include <re_list.h>
++#include <re_sa.h>
++#include <re_udp.h>
++#include <re_pcp.h>
++#include "pcp.h"
++
++
++static int pcp_header_encode_response(struct mbuf *mb, enum pcp_opcode opcode,
++				      enum pcp_result result,
++				      uint32_t lifetime, uint32_t epoch_time)
++{
++	int err = 0;
++
++	if (!mb)
++		return EINVAL;
++
++	err |= mbuf_write_u8(mb, PCP_VERSION);
++	err |= mbuf_write_u8(mb, 1<<7 | opcode);
++	err |= mbuf_write_u8(mb, 0x00);
++	err |= mbuf_write_u8(mb, result);
++	err |= mbuf_write_u32(mb, htonl(lifetime));
++	err |= mbuf_write_u32(mb, htonl(epoch_time));
++	err |= mbuf_fill(mb, 0x00, 12);
++
++	return err;
++}
++
++
++/**
++ * Send a PCP response message
++ *
++ * @param us         UDP Socket
++ * @param dst        Destination network address
++ * @param req        Buffer containing original PCP request (optional)
++ * @param opcode     PCP opcode
++ * @param result     PCP result for the response
++ * @param lifetime   Lifetime in [seconds]
++ * @param epoch_time Server Epoch-time
++ * @param payload    PCP payload, e.g. struct pcp_map (optional)
++ *
++ * @return 0 if success, otherwise errorcode
++ */
++int pcp_reply(struct udp_sock *us, const struct sa *dst, struct mbuf *req,
++	      enum pcp_opcode opcode, enum pcp_result result,
++	      uint32_t lifetime, uint32_t epoch_time, const void *payload)
++{
++	struct mbuf *mb;
++	size_t start;
++	int err;
++
++	if (!us || !dst)
++		return EINVAL;
++
++	if (req) {
++		/* the complete Request must be included in the Response */
++		mb = mem_ref(req);
++	}
++	else {
++		mb = mbuf_alloc(128);
++		if (!mb)
++			return ENOMEM;
++	}
++
++	start = mb->pos;
++
++	/* encode the response packet */
++	err = pcp_header_encode_response(mb, opcode, result,
++					 lifetime, epoch_time);
++	if (err)
++		goto out;
++
++	if (payload) {
++		err = pcp_payload_encode(mb, opcode, payload);
++		if (err)
++			goto out;
++	}
++
++	mb->pos = start;
++	err = udp_send(us, dst, mb);
++
++ out:
++	mem_deref(mb);
++	return err;
++}
+diff --git a/src/pcp/request.c b/src/pcp/request.c
+new file mode 100644
+index 0000000..60d58b4
+--- /dev/null
++++ b/src/pcp/request.c
+@@ -0,0 +1,346 @@
++/**
++ * @file pcp/request.c  PCP request
++ *
++ * Copyright (C) 2010 Creytiv.com
++ */
++#include <string.h>
++#include <re_types.h>
++#include <re_fmt.h>
++#include <re_mem.h>
++#include <re_mbuf.h>
++#include <re_list.h>
++#include <re_sys.h>
++#include <re_sa.h>
++#include <re_tmr.h>
++#include <re_udp.h>
++#include <re_pcp.h>
++#include "pcp.h"
++
++
++/*
++ * Defines a PCP client request
++ *
++ * the application must keep a reference to this object and the
++ * object must be deleted by the application. the response handler
++ * might be called multiple times.
++ */
++struct pcp_request {
++	struct pcp_conf conf;
++	struct sa srv;
++	struct udp_sock *us;
++	struct mbuf *mb;
++	struct tmr tmr;
++	struct tmr tmr_dur;
++	struct tmr tmr_refresh;
++	enum pcp_opcode opcode;
++	union pcp_payload payload;
++	uint32_t lifetime;
++	bool granted;
++	unsigned txc;
++	double RT;
++	pcp_resp_h *resph;
++	void *arg;
++};
++
++
++/*
++ * RT:   Retransmission timeout
++ * IRT:  Initial retransmission time, SHOULD be 3 seconds
++ * MRC:  Maximum retransmission count, SHOULD be 0 (no maximum)
++ * MRT:  Maximum retransmission time, SHOULD be 1024 seconds
++ * MRD:  Maximum retransmission duration, SHOULD be 0 (no maximum)
++ * RAND: Randomization factor
++ */
++static const struct pcp_conf default_conf = {
++	3,
++	0,
++	1024,
++	0
++};
++
++
++static int start_sending(struct pcp_request *req);
++
++
++/* random number between -0.1 and +0.1 */
++static inline double RAND(void)
++{
++	return (1.0 * rand_u16() / 32768 - 1.0) / 10.0;
++}
++
++static double RT_init(const struct pcp_conf *conf)
++{
++	return (1.0 + RAND()) * conf->irt;
++}
++
++static double RT_next(const struct pcp_conf *conf, double RTprev)
++{
++	return (1.0 + RAND()) * min (2 * RTprev, conf->mrt);
++}
++
++
++static void destructor(void *arg)
++{
++	struct pcp_request *req = arg;
++
++	/* Destroy the mapping if it was granted */
++	if (req->granted && req->lifetime && req->mb) {
++
++		/* set the lifetime to zero */
++		req->mb->pos = 4;
++		mbuf_write_u32(req->mb, 0);
++
++		req->mb->pos = 0;
++		(void)udp_send(req->us, &req->srv, req->mb);
++	}
++
++	tmr_cancel(&req->tmr);
++	tmr_cancel(&req->tmr_dur);
++	tmr_cancel(&req->tmr_refresh);
++	mem_deref(req->us);
++	mem_deref(req->mb);
++}
++
++
++static void completed(struct pcp_request *req, int err, struct pcp_msg *msg)
++{
++	pcp_resp_h *resph = req->resph;
++	void *arg = req->arg;
++
++	tmr_cancel(&req->tmr);
++	tmr_cancel(&req->tmr_dur);
++
++	/* if the request failed, we only called the
++	   response handler once and never again */
++	if (err || msg->hdr.result != PCP_SUCCESS ) {
++		req->resph = NULL;
++	}
++
++	if (resph)
++		resph(err, msg, arg);
++}
++
++
++static void refresh_timeout(void *arg)
++{
++	struct pcp_request *req = arg;
++
++	/* todo: update request with new EXT-ADDR from server */
++	(void)start_sending(req);
++}
++
++
++static void timeout(void *arg)
++{
++	struct pcp_request *req = arg;
++	int err;
++
++	req->txc++;
++
++	if (req->conf.mrc > 0 && req->txc > req->conf.mrc) {
++		completed(req, ETIMEDOUT, NULL);
++		return;
++	}
++
++	req->mb->pos = 0;
++	err = udp_send(req->us, &req->srv, req->mb);
++	if (err) {
++		completed(req, err, NULL);
++		return;
++	}
++
++	req->RT = RT_next(&req->conf, req->RT);
++	tmr_start(&req->tmr, req->RT * 1000, timeout, req);
++}
++
++
++static void timeout_duration(void *arg)
++{
++	struct pcp_request *req = arg;
++
++	completed(req, ETIMEDOUT, NULL);
++}
++
++
++static void udp_recv(const struct sa *src, struct mbuf *mb, void *arg)
++{
++	struct pcp_request *req = arg;
++	struct pcp_msg *msg;
++	int err;
++
++	if (!sa_cmp(src, &req->srv, SA_ALL))
++		return;
++
++	err = pcp_msg_decode(&msg, mb);
++	if (err)
++		return;
++
++	if (!msg->hdr.resp) {
++		(void)re_fprintf(stderr, "pcp: ignoring PCP request\n");
++		goto out;
++	}
++
++	if (msg->hdr.opcode != req->opcode)
++		goto out;
++
++	/* compare opcode-specific data */
++
++	switch (msg->hdr.opcode) {
++
++	case PCP_MAP:
++	case PCP_PEER:
++		if (0 != memcmp(msg->pld.map.nonce, req->payload.map.nonce,
++				PCP_NONCE_SZ)) {
++			(void)re_fprintf(stderr, "ignoring unknown nonce\n");
++			goto out;
++		}
++		req->payload.map.ext_addr = msg->pld.map.ext_addr;
++		break;
++
++	default:
++		break;
++	}
++
++	req->lifetime = msg->hdr.lifetime;
++	req->granted = (msg->hdr.result == PCP_SUCCESS);
++
++	/* todo:
++	 *
++	 * Once a PCP client has successfully received a response from a PCP
++	 * server on that interface, it resets RT to a value randomly selected
++	 * in the range 1/2 to 5/8 of the mapping lifetime, as described in
++	 * Section 11.2.1, "Renewing a Mapping", and sends subsequent PCP
++	 * requests for that mapping to that same server.
++	 */
++	if (req->granted && req->lifetime) {
++
++		uint32_t v = req->lifetime * 3/4;
++
++		tmr_start(&req->tmr_refresh, v * 1000, refresh_timeout, req);
++	}
++
++	completed(req, 0, msg);
++
++ out:
++	mem_deref(msg);
++}
++
++
++static int start_sending(struct pcp_request *req)
++{
++	int err;
++
++	req->txc = 1;
++
++	req->mb->pos = 0;
++	err = udp_send(req->us, &req->srv, req->mb);
++	if (err)
++		return err;
++
++	req->RT = RT_init(&req->conf);
++	tmr_start(&req->tmr, req->RT * 1000, timeout, req);
++
++	if (req->conf.mrd) {
++		tmr_start(&req->tmr_dur, req->conf.mrd * 1000,
++			  timeout_duration, req);
++	}
++
++	return err;
++}
++
++
++static int pcp_vrequest(struct pcp_request **reqp, const struct pcp_conf *conf,
++			const struct sa *srv, enum pcp_opcode opcode,
++			uint32_t lifetime, const void *payload,
++			pcp_resp_h *resph, void *arg,
++			uint32_t optionc, va_list ap)
++{
++	const union pcp_payload *up = payload;
++	struct pcp_request *req;
++	struct sa laddr;
++	int err;
++
++	if (!reqp || !srv)
++		return EINVAL;
++
++	sa_init(&laddr, sa_af(srv));
++
++	req = mem_zalloc(sizeof(*req), destructor);
++	if (!req)
++		return ENOMEM;
++
++	req->conf   = conf ? *conf : default_conf;
++	req->opcode = opcode;
++	req->srv    = *srv;
++	req->resph  = resph;
++	req->arg    = arg;
++
++	req->lifetime = lifetime;
++
++	if (up)
++		req->payload = *up;
++
++	err = udp_listen(&req->us, &laddr, udp_recv, req);
++	if (err)
++		goto out;
++
++	/*
++	 * see RFC 6887 section 16.4
++	 */
++	err = udp_connect(req->us, srv);
++	if (err)
++		goto out;
++	err = udp_local_get(req->us, &laddr);
++	if (err)
++		goto out;
++
++	req->mb = mbuf_alloc(128);
++	if (!req->mb) {
++		err = ENOMEM;
++		goto out;
++	}
++
++	err = pcp_msg_req_vencode(req->mb, opcode, lifetime,
++				  &laddr, up, optionc, ap);
++	if (err)
++		goto out;
++
++	err = start_sending(req);
++
++ out:
++	if (err)
++		mem_deref(req);
++	else
++		*reqp = req;
++
++	return err;
++}
++
++
++int pcp_request(struct pcp_request **reqp, const struct pcp_conf *conf,
++		const struct sa *srv, enum pcp_opcode opcode,
++		uint32_t lifetime, const void *payload,
++		pcp_resp_h *resph, void *arg, uint32_t optionc, ...)
++{
++	va_list ap;
++	int err;
++
++	va_start(ap, optionc);
++	err = pcp_vrequest(reqp, conf, srv, opcode, lifetime, payload,
++			   resph, arg, optionc, ap);
++	va_end(ap);
++
++	return err;
++}
++
++
++void pcp_force_refresh(struct pcp_request *req)
++{
++	if (!req)
++		return;
++
++	tmr_cancel(&req->tmr);
++	tmr_cancel(&req->tmr_dur);
++
++	tmr_start(&req->tmr_refresh, rand_u16() % 2000, refresh_timeout, req);
++}
