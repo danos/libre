@@ -41,7 +41,7 @@ Description: generic library for real-time communications with async IO support
   * Async I/O (poll, epoll, select, kqueue)
   * UDP/TCP/TLS/DTLS transport
   * JSON parser
-  * Real Time Messaging Protocol (RTMP)
+  * RTMP and RTMPS (Real Time Messaging Protocol)
  .
  Design goals:
  .
@@ -77,7 +77,7 @@ Description: generic library for real-time communications (development files)
   * Async I/O (poll, epoll, select, kqueue)
   * UDP/TCP/TLS/DTLS transport
   * JSON parser
-  * Real Time Messaging Protocol (RTMP)
+  * RTMP and RTMPS (Real Time Messaging Protocol)
  .
  Design goals:
  .
