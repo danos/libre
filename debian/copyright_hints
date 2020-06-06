@@ -315,28 +315,24 @@ Files: Makefile
  src/udp/mod.mk
  src/udp/udp.c
  src/uri/mod.mk
- src/uri/ucmp.c
  src/uri/uri.c
  src/uri/uric.c
  src/websock/mod.mk
  src/websock/websock.c
 Copyright: 2010, Creytiv.com
   2010-2015, Creytiv.com
-  2010-2018, Creytiv.com
+  2010-2019, Creytiv.com
   2011, Creytiv.com
 License: UNKNOWN
  FIXME
 
-Files: debian/compat
- debian/control
+Files: debian/control
  debian/docs
  debian/gbp.conf
  debian/libre-dev.install
  debian/libre0.install
  debian/libre0.lintian-overrides
  debian/libre0.symbols
- debian/patches/020181130~c847353.patch
- debian/patches/020181210~cd1dd6f.patch
  debian/patches/1001_system_header_locations.patch
  debian/patches/1002_remove_SYSROOT.patch
  debian/patches/1003_remove_MACHINE.patch
@@ -345,7 +341,6 @@ Files: debian/compat
  debian/rules
  debian/source/format
  debian/watch
- docs/ChangeLog
  docs/TODO
  docs/main.dox
  docs/symbols.txt
@@ -354,6 +349,7 @@ Files: debian/compat
  mk/exclude
  mk/win32/re.vcxproj
  mk/win32/re.vcxproj.filters
+ rpm/re.spec
  src/ice/ice.c
  src/rtmp/README.md
  src/sha/sha1.c
@@ -371,15 +367,10 @@ License: Zlib
  FIXME
 
 Files: docs/COPYING
-Copyright: 2010-2018, Alfred E. Heggestad
-  2010-2018, Creytiv.com
-  2010-2018, Richard Aas
+Copyright: 2010-2019, Alfred E. Heggestad
+  2010-2019, Creytiv.com
+  2010-2019, Richard Aas
 License: BSD-3-clause
- FIXME
-
-Files: rpm/re.spec
-Copyright: NONE
-License: BSD~unspecified
  FIXME
 
 Files: debian/copyright-check
@@ -395,6 +386,11 @@ License: UNKNOWN
 Files: debian/source/lintian-overrides
 Copyright: GPL-3+
   gpl-3+
+License: UNKNOWN
+ FIXME
+
+Files: docs/ChangeLog
+Copyright: year (#186)
 License: UNKNOWN
  FIXME
 

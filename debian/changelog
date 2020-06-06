@@ -1,3 +1,23 @@
+libre (0.6.1-1) unstable; urgency=medium
+
+  [ upstream ]
+  * New release
+
+  [ Jonas Smedegaard ]
+  * use debhelper compatibility level 12 (not 9);
+    build-depend on debhelper-compat (not debhelper)
+  * declare compliance with Debian Policy 4.5.0
+  * mention support for RTMPS in long description
+  * watch: rewrite usage comment
+  * drop patches chrry-picked upstream now applied
+  * unfuzz patches
+  * mark binary packages Multi-Arch: same
+  * copyright: update coverage
+  * build-depend on zlib1g-dev
+  * update symbols: 2 added; 2 dropped
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 06 Jun 2020 12:13:57 +0200
+
 libre (0.6.0-4) unstable; urgency=medium
 
   * Fix FTCBFS: Pass CC for all targets.
