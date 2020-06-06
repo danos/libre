@@ -7,9 +7,6 @@ export CC
 
 DH_VERBOSE = 1
 
-%:
-	dh $@ --with pkgkde_symbolshelper
-
 EXTRA_LFLAGS:="$(shell dpkg-buildflags --get LDFLAGS) -Wl,-soname,libre.so.0"
 EXTRA_CFLAGS:="$(shell dpkg-buildflags --get CPPFLAGS)"
 
@@ -47,3 +44,6 @@ override_dh_auto_clean:
 	rm -f GNUmakefile
 
 override_dh_auto_test:
+
+%:
+	dh $@ --with pkgkde_symbolshelper
