@@ -3,7 +3,7 @@ libre README
 
 
 libre is a Generic library for real-time communications with async IO support.
-Copyright (C) 2010 - 2018 Creytiv.com
+Copyright (C) 2010 - 2019 Creytiv.com
 
 
 [![Build Status](https://travis-ci.org/creytiv/re.svg?branch=master)](https://travis-ci.org/creytiv/re)
@@ -234,9 +234,10 @@ legend:
 
 ### Supported versions of OpenSSL
 
-* OpenSSL version 1.0.1
+* OpenSSL version 1.0.1 (Not supported)
 * OpenSSL version 1.0.2
-* OpenSSL version 1.1.0 (supported since version 0.5.0)
+* OpenSSL version 1.1.0
+* OpenSSL version 1.1.1
 * LibreSSL version 2.x
 
 
@@ -267,7 +268,7 @@ legend:
 | ICE     | -   | yes | -   | -   |
 | RTP     | -   | yes | -   | -   |
 | RTCP    | -   | yes | -   | -   |
-| RTMP    | yes | -   | -   | -   |
+| RTMP    | yes | -   | yes | -   |
 | SIP     | yes | yes | yes | -   |
 | STUN    | yes | yes | yes | yes |
 | TURN    | yes | yes | yes | yes |
