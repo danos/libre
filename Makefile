@@ -7,7 +7,7 @@
 # Master version number
 VER_MAJOR := 0
 VER_MINOR := 6
-VER_PATCH := 0
+VER_PATCH := 1
 
 PROJECT   := re
 VERSION   := $(VER_MAJOR).$(VER_MINOR).$(VER_PATCH)
@@ -78,7 +78,7 @@ endif
 libre.pc:
 	@echo 'prefix='$(PREFIX) > libre.pc
 	@echo 'exec_prefix=$${prefix}' >> libre.pc
-	@echo 'libdir=$${prefix}/lib' >> libre.pc
+	@echo 'libdir=$(LIBDIR)' >> libre.pc
 	@echo 'includedir=$${prefix}/include/re' >> libre.pc
 	@echo '' >> libre.pc
 	@echo 'Name: libre' >> libre.pc
