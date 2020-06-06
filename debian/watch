@@ -1,3 +1,5 @@
-# run "uscan --report" to check or "gpb import-orig --uscan" to update
 version=4
+# check: uscan --report
+# update: gbp import-orig --upstream-vcs-tag=vX.Y.Z --uscan
+
 http://www.creytiv.com/pub/re@ANY_VERSION@@ARCHIVE_EXT@
