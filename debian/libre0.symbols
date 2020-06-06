@@ -49,7 +49,6 @@ libre.so.0 libre0 #MINVER#
  conf_get_bool@Base 0.4.14
  conf_get_str@Base 0.4.14
  conf_get_u32@Base 0.4.14
- crc32@Base 0.5.0
  dbg_close@Base 0.4.14
  dbg_handler_set@Base 0.4.14
  dbg_info@Base 0.4.14
@@ -518,6 +517,7 @@ libre.so.0 libre0 #MINVER#
  rtmp_send_amf_command@Base 0.6.0
  rtmp_send_audio@Base 0.6.0
  rtmp_send_video@Base 0.6.0
+ rtmp_set_handlers@Base 0.6.1
  rtmp_stream_alloc@Base 0.6.0
  rtmp_stream_create@Base 0.6.0
  rtmp_stream_find@Base 0.6.0
@@ -904,6 +904,7 @@ libre.so.0 libre0 #MINVER#
  tls_set_servername@Base 0.4.17
  tls_set_srtp@Base 0.4.14
  tls_set_verify_client@Base 0.4.14
+ tls_set_verify_server@Base 0.6.1
  tls_srtp_keyinfo@Base 0.4.14
  tls_start_tcp@Base 0.4.14
  tmr_cancel@Base 0.4.14
@@ -952,7 +953,6 @@ libre.so.0 libre0 #MINVER#
  udp_thread_attach@Base 0.4.14
  udp_thread_detach@Base 0.4.14
  unix2ntp@Base 0.4.14
- uri_cmp@Base 0.4.14
  uri_decode@Base 0.4.14
  uri_decode_hostport@Base 0.6.0
  uri_encode@Base 0.4.14
