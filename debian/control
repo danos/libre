@@ -23,6 +23,8 @@ Section: libs
 Depends:
  ${misc:Depends},
  ${shlibs:Depends},
+Breaks:
+ baresip-core (<< 1.0.0),
 Description: generic library for real-time communications with async IO support
  Libre is a portable and generic library for real-time communications
  with async IO support and a complete SIP stack with support for protocols

@@ -134,7 +134,9 @@ libre.so.0 libre0 #MINVER#
  http_auth_check_request@Base 0.4.14
  http_auth_print_challenge@Base 0.4.14
  http_chunk_decode@Base 0.5.6
+ http_client_add_ca@Base 1.0.0
  http_client_alloc@Base 0.4.14
+ http_client_set_tls_hostname@Base 1.0.0
  http_conn_close@Base 0.4.14
  http_conn_peer@Base 0.4.14
  http_conn_tcp@Base 0.4.14
@@ -154,8 +156,6 @@ libre.so.0 libre0 #MINVER#
  http_msg_xhdr_has_value@Base 0.4.14
  http_reply@Base 0.4.14
  http_req_set_conn_handler@Base 0.5.6
-#MISSING: 0.5.6-1# http_req_tcp@Base 0.4.14
-#MISSING: 0.5.6-1# http_req_tls@Base 0.4.14
  http_request@Base 0.4.14
  http_sock_tcp@Base 0.4.14
  httpauth_digest_challenge_decode@Base 0.4.14
@@ -231,15 +231,12 @@ libre.so.0 libre0 #MINVER#
  icem_conncheck_start@Base 0.4.14
  icem_conncheck_stop@Base 0.4.14
  icem_debug@Base 0.4.14
-#MISSING: 0.5.5-1# icem_gather_relay@Base 0.4.14
-#MISSING: 0.5.5-1# icem_gather_srflx@Base 0.4.14
  icem_lcand_add@Base 0.4.14
  icem_lcand_add_base@Base 0.4.14
  icem_lcand_addr@Base 0.5.5
  icem_lcand_base@Base 0.5.5
  icem_lcand_find_checklist@Base 0.4.14
  icem_lcandl@Base 0.4.14
- icem_lite_set_default_candidates@Base 0.4.14
  icem_local_role@Base 0.5.3
  icem_mismatch@Base 0.4.14
  icem_printf@Base 0.4.14
@@ -411,6 +408,7 @@ libre.so.0 libre0 #MINVER#
  pl_strcmp@Base 0.4.14
  pl_strcpy@Base 0.4.14
  pl_strdup@Base 0.4.14
+ pl_strrchr@Base 1.0.0
  pl_u32@Base 0.4.14
  pl_u64@Base 0.4.14
  pl_x32@Base 0.4.14
@@ -582,6 +580,7 @@ libre.so.0 libre0 #MINVER#
  sdp_media_debug@Base 0.4.14
  sdp_media_del_lattr@Base 0.4.14
  sdp_media_dir@Base 0.4.14
+ sdp_media_disabled@Base 1.0.0
  sdp_media_find@Base 0.4.14
  sdp_media_format@Base 0.4.14
  sdp_media_format_apply@Base 0.4.14
@@ -688,6 +687,7 @@ libre.so.0 libre0 #MINVER#
  sip_request_loops@Base 0.4.14
  sip_requestf@Base 0.4.14
  sip_send@Base 0.4.14
+ sip_set_trace_handler@Base 1.0.0
  sip_strans_alloc@Base 0.4.14
  sip_strans_debug@Base 0.4.14
  sip_strans_init@Base 0.4.14
@@ -725,7 +725,9 @@ libre.so.0 libre0 #MINVER#
  sipnot_refresh@Base 0.4.14
  sipnot_reply@Base 0.4.14
  sipreg_laddr@Base 0.5.5
+ sipreg_proxy_expires@Base 1.0.0
  sipreg_register@Base 0.4.14
+ sipreg_set_rwait@Base 1.0.0
  sipsess_accept@Base 0.4.14
  sipsess_ack@Base 0.4.14
  sipsess_ack_again@Base 0.4.14
@@ -875,6 +877,7 @@ libre.so.0 libre0 #MINVER#
  tcp_set_send@Base 0.4.14
  tcp_sock_alloc@Base 0.4.14
  tcp_sock_bind@Base 0.4.14
+ tcp_sock_dup@Base 1.0.0
  tcp_sock_listen@Base 0.4.14
  tcp_sock_local_get@Base 0.4.14
  telev_alloc@Base 0.4.14
@@ -890,20 +893,22 @@ libre.so.0 libre0 #MINVER#
  tls_cipher_name@Base 0.4.16
  tls_fingerprint@Base 0.4.14
  tls_flush_error@Base 0.5.0
-#MISSING: 0.5.7-1# tls_method_tcp@Base 0.5.0
-#MISSING: 0.5.7-1# tls_method_udp@Base 0.5.0
  tls_openssl_context@Base 0.5.3
  tls_peer_common_name@Base 0.4.14
  tls_peer_fingerprint@Base 0.4.14
+ tls_peer_set_verify_host@Base 1.0.0
  tls_peer_verify@Base 0.4.14
  tls_set_certificate@Base 0.4.14
  tls_set_certificate_der@Base 0.5.0
  tls_set_certificate_pem@Base 0.5.0
  tls_set_ciphers@Base 0.4.17
+ tls_set_hostname@Base 1.0.0
  tls_set_selfsigned@Base 0.4.14
+ tls_set_selfsigned_rsa@Base 1.0.0
  tls_set_servername@Base 0.4.17
  tls_set_srtp@Base 0.4.14
  tls_set_verify_client@Base 0.4.14
+ tls_set_verify_purpose@Base 1.0.0
  tls_set_verify_server@Base 0.6.1
  tls_srtp_keyinfo@Base 0.4.14
  tls_start_tcp@Base 0.4.14
