@@ -5,8 +5,6 @@ include /usr/share/dpkg/buildtools.mk
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 export CC
 
-DH_VERBOSE = 1
-
 EXTRA_LFLAGS:="$(shell dpkg-buildflags --get LDFLAGS) -Wl,-soname,libre.so.0"
 EXTRA_CFLAGS:="$(shell dpkg-buildflags --get CPPFLAGS)"
 
