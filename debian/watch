@@ -2,4 +2,7 @@ version=4
 # check: uscan --report
 # update: gbp import-orig --upstream-vcs-tag=vX.Y.Z --uscan
 
-http://www.creytiv.com/pub/re@ANY_VERSION@@ARCHIVE_EXT@
+opts=\
+filenamemangle=s/.*?(@ANY_VERSION@@ARCHIVE_EXT@)/@PACKAGE@-$1/ \
+https://github.com/baresip/re/tags \
+.*?@ANY_VERSION@@ARCHIVE_EXT@

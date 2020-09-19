@@ -1,8 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: libre
-Upstream-Contact: https://github.com/creytiv/re/issues
-Source: http://www.creytiv.com/re.html
- git://github.com/creytiv/re
+Upstream-Contact: https://github.com/baresip/re/issues
+Source: https://github.com/baresip/re
 
 Files: *
 Copyright:
