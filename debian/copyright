@@ -6,8 +6,8 @@ Source: https://github.com/baresip/re
 Files: *
 Copyright:
   2010-2019, Alfred E. Heggestad
-  2010-2019, Creytiv.com
   2010-2019, Richard Aas
+  2010-2020, Creytiv.com
 License: BSD-3-clause
 
 Files: src/crc32/crc32.c
