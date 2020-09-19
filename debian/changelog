@@ -1,3 +1,20 @@
+libre (1.0.0-1) unstable; urgency=medium
+
+  [ upstream ]
+  * New release
+
+  [ Jonas Smedegaard ]
+  * switch upstream source URLs to use baresip fork
+  * simplify source script copyright-check
+  * copyright: update coverage
+  * unfuzz patches
+  * update symbols:
+    + 12 symbols added
+    + 1 symbol dropped
+    break older baresip-core using the dropped symbol
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 19 Sep 2020 10:42:27 +0200
+
 libre (0.6.1-1) unstable; urgency=medium
 
   [ upstream ]
