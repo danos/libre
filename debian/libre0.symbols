@@ -136,6 +136,8 @@ libre.so.0 libre0 #MINVER#
  http_chunk_decode@Base 0.5.6
  http_client_add_ca@Base 1.0.0
  http_client_alloc@Base 0.4.14
+ http_client_set_laddr6@Base 1.1.0
+ http_client_set_laddr@Base 1.1.0
  http_client_set_tls_hostname@Base 1.0.0
  http_conn_close@Base 0.4.14
  http_conn_peer@Base 0.4.14
@@ -693,6 +695,7 @@ libre.so.0 libre0 #MINVER#
  sip_strans_init@Base 0.4.14
  sip_strans_reply@Base 0.4.14
  sip_transp_add@Base 0.4.14
+ sip_transp_add_websock@Base 1.1.0
  sip_transp_debug@Base 0.4.14
  sip_transp_flush@Base 0.4.14
  sip_transp_init@Base 0.4.14
@@ -724,9 +727,13 @@ libre.so.0 libre0 #MINVER#
  sipnot_notify@Base 0.4.14
  sipnot_refresh@Base 0.4.14
  sipnot_reply@Base 0.4.14
+ sipreg_failed@Base 1.1.0
+ sipreg_incfailc@Base 1.1.0
  sipreg_laddr@Base 0.5.5
  sipreg_proxy_expires@Base 1.0.0
  sipreg_register@Base 0.4.14
+ sipreg_registered@Base 1.1.0
+ sipreg_set_fbregint@Base 1.1.0
  sipreg_set_rwait@Base 1.0.0
  sipsess_accept@Base 0.4.14
  sipsess_ack@Base 0.4.14
@@ -867,6 +874,7 @@ libre.so.0 libre0 #MINVER#
  tcp_conn_txqsz@Base 0.4.14
  tcp_conn_txqsz_set@Base 0.4.14
  tcp_connect@Base 0.4.14
+ tcp_connect_bind@Base 1.1.0
  tcp_listen@Base 0.4.14
  tcp_local_get@Base 0.4.14
  tcp_register_helper@Base 0.4.14
@@ -893,6 +901,8 @@ libre.so.0 libre0 #MINVER#
  tls_cipher_name@Base 0.4.16
  tls_fingerprint@Base 0.4.14
  tls_flush_error@Base 0.5.0
+ tls_get_issuer@Base 1.1.0
+ tls_get_subject@Base 1.1.0
  tls_openssl_context@Base 0.5.3
  tls_peer_common_name@Base 0.4.14
  tls_peer_fingerprint@Base 0.4.14
@@ -983,3 +993,4 @@ libre.so.0 libre0 #MINVER#
  websock_peer@Base 0.4.14
  websock_send@Base 0.4.14
  websock_shutdown@Base 0.4.14
+ websock_tcp@Base 1.1.0
