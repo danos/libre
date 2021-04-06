@@ -271,6 +271,7 @@ endif
 	AFLAGS		:= cru
 	LIB_SUFFIX	:= .dylib
 	HAVE_KQUEUE	:= 1
+	SYSROOT		:= $(shell xcrun --show-sdk-path)/usr
 endif
 ifeq ($(OS),netbsd)
 	CFLAGS		+= -fPIC -DNETBSD
@@ -594,7 +595,6 @@ endif
 CFLAGS  += -DHAVE_UNAME
 CFLAGS  += -DHAVE_UNISTD_H
 CFLAGS  += -DHAVE_STRINGS_H
-CFLAGS  += -DHAVE_GAI_STRERROR
 endif
 
 ifneq ($(HAVE_ARC4RANDOM),)
@@ -736,14 +736,8 @@ git_snapshot:
 # Debian
 .PHONY: deb
 deb:
-	dpkg-buildpackage -rfakeroot
+	dpkg-buildpackage -rfakeroot --post-clean
 
-.PHONY: debclean
-debclean:
-	@rm -rf build-stamp configure-stamp debian/files debian/$(PROJECT) \
-		debian/lib$(PROJECT) debian/lib$(PROJECT)-dev debian/tmp \
-		debian/.debhelper debian/*.debhelper debian/*.debhelper.log \
-		debian/*.substvars
 
 # RPM
 RPM := $(shell [ -d /usr/src/rpm ] 2>/dev/null && echo "rpm")

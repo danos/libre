@@ -28,7 +28,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  # Alternative Systemroot
  ifeq ($(SYSROOT_ALT),)
  SYSROOT_ALT := $(shell [ -d /sw/include ] && echo "/sw")
-@@ -337,7 +331,6 @@
+@@ -338,7 +332,6 @@
  	LIB_SUFFIX	:= .dll
  	MOD_SUFFIX	:= .dll
  	BIN_SUFFIX	:= .exe

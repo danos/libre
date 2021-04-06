@@ -57,6 +57,7 @@ enum rtmp_event_type {
 
 
 /* forward declarations */
+struct tls;
 struct dnsc;
 struct odict;
 struct tcp_sock;
@@ -75,12 +76,16 @@ typedef void (rtmp_command_h)(const struct odict *msg, void *arg);
 typedef void (rtmp_close_h)(int err, void *arg);
 
 int rtmp_connect(struct rtmp_conn **connp, struct dnsc *dnsc, const char *uri,
+		 struct tls *tls,
 		 rtmp_estab_h *estabh, rtmp_command_h *cmdh,
 		 rtmp_close_h *closeh, void *arg);
 int rtmp_accept(struct rtmp_conn **connp, struct tcp_sock *ts,
+		struct tls *tls,
 		rtmp_command_h *cmdh, rtmp_close_h *closeh, void *arg);
 int rtmp_control(const struct rtmp_conn *conn,
 		 enum rtmp_packet_type type, ...);
+void rtmp_set_handlers(struct rtmp_conn *conn, rtmp_command_h *cmdh,
+		       rtmp_close_h *closeh, void *arg);
 struct tcp_conn *rtmp_conn_tcpconn(const struct rtmp_conn *conn);
 const char *rtmp_conn_stream(const struct rtmp_conn *conn);
 int  rtmp_conn_debug(struct re_printf *pf, const struct rtmp_conn *conn);
@@ -99,7 +104,7 @@ int rtmp_amf_request(struct rtmp_conn *conn, uint32_t stream_id,
 int rtmp_amf_reply(struct rtmp_conn *conn, uint32_t stream_id, bool success,
 		   const struct odict *req,
 		   unsigned body_propc, ...);
-int rtmp_amf_data(struct rtmp_conn *conn, uint32_t stream_id,
+int rtmp_amf_data(const struct rtmp_conn *conn, uint32_t stream_id,
 		  const char *command, unsigned body_propc, ...);
 
 
@@ -125,6 +130,7 @@ int rtmp_stream_create(struct rtmp_stream **strmp, struct rtmp_conn *conn,
 		       void *arg);
 int rtmp_play(struct rtmp_stream *strm, const char *name);
 int rtmp_publish(struct rtmp_stream *strm, const char *name);
+int rtmp_meta(struct rtmp_stream *strm);
 int rtmp_send_audio(struct rtmp_stream *strm, uint32_t timestamp,
 		    const uint8_t *pld, size_t len);
 int rtmp_send_video(struct rtmp_stream *strm, uint32_t timestamp,

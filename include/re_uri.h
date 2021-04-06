@@ -13,6 +13,7 @@ struct uri {
 	struct pl host;      /**< Hostname or IP-address            */
 	int af;              /**< Address family of host IP-address */
 	uint16_t port;       /**< Port number                       */
+	struct pl path;      /**< Optional URI-path                 */
 	struct pl params;    /**< Optional URI-parameters           */
 	struct pl headers;   /**< Optional URI-headers              */
 };
@@ -31,7 +32,6 @@ int  uri_params_apply(const struct pl *pl, uri_apply_h *ah, void *arg);
 int  uri_header_get(const struct pl *pl, const struct pl *hname,
 		    struct pl *hvalue);
 int  uri_headers_apply(const struct pl *pl, uri_apply_h *ah, void *arg);
-bool uri_cmp(const struct uri *l, const struct uri *r);
 
 
 /* Special URI escaping/unescaping */

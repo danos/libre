@@ -2,20 +2,24 @@ Source: libre
 Section: comm
 Priority: optional
 Maintainer: Vyatta Package Maintainers <DL-vyatta-help@att.com>
-Standards-Version: 4.3.0
+Standards-Version: 4.5.0
 Build-Depends:
- debhelper,
+ debhelper-compat (= 12),
  libssl-dev,
  pkg-kde-tools,
+ zlib1g-dev,
 Homepage: http://www.creytiv.com/re.html
 Rules-Requires-Root: no
 
 Package: libre0
 Architecture: any
+Multi-Arch: same
 Section: libs
 Depends:
  ${misc:Depends},
  ${shlibs:Depends},
+Breaks:
+ baresip-core (<< 1.0.0),
 Description: generic library for real-time communications with async IO support
  Libre is a portable and generic library for real-time communications
  with async IO support and a complete SIP stack with support for protocols
@@ -36,7 +40,7 @@ Description: generic library for real-time communications with async IO support
   * Async I/O (poll, epoll, select, kqueue)
   * UDP/TCP/TLS/DTLS transport
   * JSON parser
-  * Real Time Messaging Protocol (RTMP)
+  * RTMP and RTMPS (Real Time Messaging Protocol)
  .
  Design goals:
  .
@@ -47,6 +51,7 @@ Description: generic library for real-time communications with async IO support
 
 Package: libre-dev
 Architecture: any
+Multi-Arch: same
 Section: libdevel
 Depends:
  libre0 (= ${binary:Version}),
@@ -72,7 +77,7 @@ Description: generic library for real-time communications (development files)
   * Async I/O (poll, epoll, select, kqueue)
   * UDP/TCP/TLS/DTLS transport
   * JSON parser
-  * Real Time Messaging Protocol (RTMP)
+  * RTMP and RTMPS (Real Time Messaging Protocol)
  .
  Design goals:
  .

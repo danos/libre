@@ -1,14 +1,13 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: libre
-Upstream-Contact: https://github.com/creytiv/re/issues
-Source: http://www.creytiv.com/re.html
- git://github.com/creytiv/re
+Upstream-Contact: https://github.com/baresip/re/issues
+Source: https://github.com/baresip/re
 
 Files: *
 Copyright:
-  2010-2018, Alfred E. Heggestad
-  2010-2018, Creytiv.com
-  2010-2018, Richard Aas
+  2010-2019, Alfred E. Heggestad
+  2010-2019, Richard Aas
+  2010-2020, Creytiv.com
 License: BSD-3-clause
 
 Files: src/crc32/crc32.c
@@ -21,7 +20,7 @@ License: md5-license
 
 Files: debian/*
 Copyright:
-  2016-2019, Jonas Smedegaard <dr@jones.dk>
+  2016-2020, Jonas Smedegaard <dr@jones.dk>
 License-Grant:
  This program is free software;
  you can redistribute it and/or modify it

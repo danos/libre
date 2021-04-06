@@ -1,3 +1,70 @@
+libre (1.1.0-1) unstable; urgency=medium
+
+  [ upstream ]
+  * New release
+    + dns: listen on IPv4 and IPv6 socket;
+      closes: bug#971980, thanks to Kevin Otte
+
+  [ Jonas Smedegaard ]
+  * simplify build: stop set verbose debhelper output
+  * update symbols: 11 symbols added
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sun, 11 Oct 2020 02:51:43 +0200
+
+libre (1.0.0-1) unstable; urgency=medium
+
+  [ upstream ]
+  * New release
+
+  [ Jonas Smedegaard ]
+  * switch upstream source URLs to use baresip fork
+  * simplify source script copyright-check
+  * copyright: update coverage
+  * unfuzz patches
+  * update symbols:
+    + 12 symbols added
+    + 1 symbol dropped
+    break older baresip-core using the dropped symbol
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 19 Sep 2020 10:42:27 +0200
+
+libre (0.6.1-1) unstable; urgency=medium
+
+  [ upstream ]
+  * New release
+
+  [ Jonas Smedegaard ]
+  * use debhelper compatibility level 12 (not 9);
+    build-depend on debhelper-compat (not debhelper)
+  * declare compliance with Debian Policy 4.5.0
+  * mention support for RTMPS in long description
+  * watch: rewrite usage comment
+  * drop patches chrry-picked upstream now applied
+  * unfuzz patches
+  * mark binary packages Multi-Arch: same
+  * copyright: update coverage
+  * build-depend on zlib1g-dev
+  * update symbols: 2 added; 2 dropped
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 06 Jun 2020 12:13:57 +0200
+
+libre (0.6.0-4) unstable; urgency=medium
+
+  * Fix FTCBFS: Pass CC for all targets.
+    Closes: Bug#932921. Thanks to Helmut Grohne.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Wed, 24 Jul 2019 20:23:37 -0300
+
+libre (0.6.0-3) unstable; urgency=medium
+
+  * Drop Simon Josefsson as uploader by his request.
+    Thanks for your past contributions.
+  * Declare compliance with Debian Policy 4.4.0.
+  * Use debhelper compatibility level 10 (not 9).
+    Stop explicitly add option --parallel.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sun, 21 Jul 2019 21:01:00 -0300
+
 libre (0.6.0-2vyatta2) unstable; urgency=medium
 
   * DANOS Import master

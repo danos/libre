@@ -35,6 +35,11 @@ struct http_cli {
 	struct hash *ht_conn;
 	struct dnsc *dnsc;
 	struct tls *tls;
+	char *tls_hostname;
+	struct sa laddr;
+#ifdef HAVE_INET6
+	struct sa laddr6;
+#endif
 };
 
 struct conn;
@@ -97,6 +102,7 @@ static void cli_destructor(void *arg)
 	mem_deref(cli->ht_conn);
 	mem_deref(cli->dnsc);
 	mem_deref(cli->tls);
+	mem_deref(cli->tls_hostname);
 }
 
 
@@ -401,6 +407,7 @@ static int conn_connect(struct http_req *req)
 {
 	const struct sa *addr = &req->srvv[req->srvc];
 	struct conn *conn;
+	struct sa *laddr = NULL;
 	int err;
 
 	conn = list_ledata(hash_lookup(req->cli->ht_conn,
@@ -431,8 +438,19 @@ static int conn_connect(struct http_req *req)
 	conn->addr = *addr;
 	conn->usec = 1;
 
-	err = tcp_connect(&conn->tc, addr, estab_handler, recv_handler,
-			  close_handler, conn);
+	if (sa_af(&conn->addr) == AF_INET)
+		laddr = &req->cli->laddr;
+#ifdef HAVE_INET6
+	else if (sa_af(&conn->addr) == AF_INET6)
+		laddr = &req->cli->laddr6;
+#endif
+
+	if (sa_isset(laddr, SA_ADDR))
+		err = tcp_connect_bind(&conn->tc, addr, estab_handler,
+			recv_handler,close_handler, laddr, conn);
+	else
+		err = tcp_connect(&conn->tc, addr, estab_handler, recv_handler,
+			close_handler, conn);
 	if (err)
 		goto out;
 
@@ -440,6 +458,17 @@ static int conn_connect(struct http_req *req)
 	if (req->secure) {
 
 		err = tls_start_tcp(&conn->sc, req->cli->tls, conn->tc, 0);
+		if (err)
+			goto out;
+
+		if (req->cli->tls_hostname)
+			err = tls_peer_set_verify_host(conn->sc,
+				req->cli->tls_hostname);
+
+		if (err)
+			goto out;
+
+		err = tls_set_servername(conn->sc, req->host);
 		if (err)
 			goto out;
 	}
@@ -683,11 +712,15 @@ int http_client_alloc(struct http_cli **clip, struct dnsc *dnsc)
 
 #ifdef USE_TLS
 	err = tls_alloc(&cli->tls, TLS_METHOD_SSLV23, NULL, NULL);
+	if (err)
+		goto out;
+
+	err = tls_set_verify_purpose(cli->tls, "sslserver");
+	if (err)
+		goto out;
 #else
 	err = 0;
 #endif
-	if (err)
-		goto out;
 
 	cli->dnsc = mem_ref(dnsc);
 
@@ -698,4 +731,71 @@ int http_client_alloc(struct http_cli **clip, struct dnsc *dnsc)
 		*clip = cli;
 
 	return err;
+}
+
+
+#ifdef USE_TLS
+/**
+ * Add trusted CA certificates
+ *
+ * @param cli     HTTP client
+ * @param capath  Path to CA certificates
+ *
+ * @return 0 if success, otherwise errorcode
+ */
+int http_client_add_ca(struct http_cli *cli, const char *tls_ca)
+{
+	if (!cli || !tls_ca)
+		return EINVAL;
+
+	return tls_add_ca(cli->tls, tls_ca);
+}
+
+
+/**
+ * Set verify host name
+ *
+ * @param cli       HTTP client
+ * @param hostname  String for alternative name validation.
+ *
+ * @return 0 if success, otherwise errorcode
+ */
+int http_client_set_tls_hostname(struct http_cli *cli,
+				 const struct pl *hostname)
+{
+	if (!cli || !hostname)
+		return EINVAL;
+
+	return tls_set_hostname(cli->tls_hostname, hostname);
+}
+#endif
+
+
+/**
+ * Send an HTTP request
+ *
+ * @param cli   HTTP Client
+ * @param addr  Bind to local v4 address
+ *
+ */
+void http_client_set_laddr(struct http_cli *cli, struct sa *addr)
+{
+	if (cli && addr)
+		sa_cpy(&cli->laddr, addr);
+}
+
+
+/**
+ * Send an HTTP request
+ *
+ * @param cli    HTTP Client
+ * @param addr   Bind to local v6 address
+ *
+ */
+void http_client_set_laddr6(struct http_cli *cli, struct sa *addr)
+{
+#ifdef HAVE_INET6
+	if (cli && addr)
+		sa_cpy(&cli->laddr6, addr);
+#endif
 }

@@ -14,7 +14,7 @@ Last-Update: 2018-10-19
 This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 --- a/mk/re.mk
 +++ b/mk/re.mk
-@@ -449,22 +449,19 @@
+@@ -450,22 +450,19 @@
  # External libraries section
  #
  
@@ -44,7 +44,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  
  ifneq ($(USE_OPENSSL_DTLS),)
  CFLAGS  += -DUSE_OPENSSL_DTLS -DUSE_DTLS
-@@ -482,9 +479,8 @@
+@@ -483,9 +480,8 @@
  endif
  
  
@@ -56,7 +56,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  
  ifneq ($(USE_ZLIB),)
  CFLAGS  += -DUSE_ZLIB
-@@ -494,7 +490,8 @@
+@@ -495,7 +491,8 @@
  
  ifneq ($(OS),win32)
  
@@ -66,7 +66,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  ifneq ($(HAVE_PTHREAD),)
  HAVE_PTHREAD_RWLOCK := 1
  CFLAGS  += -DHAVE_PTHREAD
-@@ -505,7 +502,8 @@
+@@ -506,7 +503,8 @@
  endif
  
  ifneq ($(ARCH),mipsel)
@@ -76,7 +76,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  ifneq ($(HAVE_GETIFADDRS),)
  CFLAGS  += -DHAVE_GETIFADDRS
  endif
-@@ -518,22 +516,24 @@
+@@ -519,22 +517,24 @@
  
  endif
  
@@ -107,7 +107,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  ifneq ($(HAVE_SYS_SYSCTL_H),)
  CFLAGS  += -DHAVE_SYS_SYSCTL_H
  endif
-@@ -549,15 +549,17 @@
+@@ -550,15 +550,17 @@
  CFLAGS  += -DHAVE_SELECT
  CFLAGS  += -DHAVE_IO_H
  else

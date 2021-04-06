@@ -1,11 +1,9 @@
 #!/usr/bin/make -f
 
+include /usr/share/dpkg/buildtools.mk
+
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-
-DH_VERBOSE = 1
-
-%:
-	dh $@ --with pkgkde_symbolshelper --parallel
+export CC
 
 EXTRA_LFLAGS:="$(shell dpkg-buildflags --get LDFLAGS) -Wl,-soname,libre.so.0"
 EXTRA_CFLAGS:="$(shell dpkg-buildflags --get CPPFLAGS)"
@@ -44,3 +42,6 @@ override_dh_auto_clean:
 	rm -f GNUmakefile
 
 override_dh_auto_test:
+
+%:
+	dh $@ --with pkgkde_symbolshelper
