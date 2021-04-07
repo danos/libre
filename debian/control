@@ -55,6 +55,7 @@ Multi-Arch: same
 Section: libdevel
 Depends:
  libre0 (= ${binary:Version}),
+ zlib1g-dev,
  ${misc:Depends},
  ${shlibs:Depends},
 Description: generic library for real-time communications (development files)
