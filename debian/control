@@ -6,6 +6,7 @@ Standards-Version: 4.5.0
 Build-Depends:
  debhelper-compat (= 12),
  libssl-dev,
+ pkg-config,
  pkg-kde-tools,
  zlib1g-dev,
 Homepage: http://www.creytiv.com/re.html

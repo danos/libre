@@ -6,3 +6,4 @@
 0008-Add-UDP-receive-packet-info-facility.patch
 0009-Remove-conflicting-PCP-draft-error-code.patch
 0010-Set-UDP-listen-to-any-ipv6-address-as-ipv6-only.patch
+harden-openssl-detection.patch

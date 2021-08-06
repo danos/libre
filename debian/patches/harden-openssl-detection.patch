@@ -1,0 +1,12 @@
+--- a/mk/re.mk
++++ b/mk/re.mk
+@@ -429,8 +429,7 @@ endif
+ # External libraries section
+ #
+ 
+-USE_OPENSSL := $(shell echo '\#include <openssl/ssl.h>' | \
+-	$(CC) -E - >/dev/null 2>&1 && echo "yes")
++USE_OPENSSL := $(shell pkg-config --exists libssl && echo "yes")
+ 
+ ifneq ($(USE_OPENSSL),)
+ CFLAGS  += -DUSE_OPENSSL -DUSE_TLS
